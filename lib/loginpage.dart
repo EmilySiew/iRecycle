@@ -8,13 +8,13 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:recycle/mainscreen.dart';
 import 'package:recycle/forgotpw.dart';
 
-String urlLogin = "http://techvestigate.com/irecycle/php/login.php";
+String urlLogin = "https://techvestigate.com/irecycle/php/login.php";
 
 bool _isChecked = true;
 final TextEditingController _emcontroller = TextEditingController();
 String _email = "";
 final TextEditingController _pscontroller = TextEditingController();
-String _pass = "";
+String _password = "";
 
 class LoginPage extends StatefulWidget {
   @override
@@ -120,17 +120,17 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onLogin() {
     _email = _emcontroller.text;
-    _pass = _pscontroller.text;
+    _password = _pscontroller.text;
     print(_email);
-    print(_pass);
-    if (_checkEmail(_email) && _pass.length > 5) {
+    print(_password);
+    if (_checkEmail(_email) && _password.length > 5) {
       ProgressDialog pr = new ProgressDialog(context, 
         type: ProgressDialogType.Normal, isDismissible: false);
       pr.style(message: "Login in");
       pr.show();
       http.post(urlLogin, body: {
         "email": _email,
-        "password": _pass,
+        "password": _password,
       }).then((res){
         print(res.statusCode);
         Toast.show(res.body, context,
@@ -183,11 +183,11 @@ class _LoginPageState extends State<LoginPage> {
     print('Inside loadpref()');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _email = _emcontroller.text;
-    _pass = _pscontroller.text;
+    _password = _pscontroller.text;
     if (value) {
-      if (_checkEmail(_email) && (_pass.length > 5)) {
+      if (_checkEmail(_email) && (_password.length > 5)) {
         await prefs.setString('email', _email);
-        await prefs.setString('pass', _pass);
+        await prefs.setString('pass', _password);
         print('Pref Stored');
         Toast.show("Preferences have been saved", context,
             duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
@@ -203,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       //remove value from pref
       await prefs.setString('email', '');
-      await prefs.setString('pass', '');
+      await prefs.setString('password', '');
       setState(() {
         _emcontroller.text = '';
         _pscontroller.text = '';
@@ -218,12 +218,12 @@ class _LoginPageState extends State<LoginPage> {
     print('Inside loadpref');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _email = (prefs.getString('email'));
-    _pass = (prefs.getString('pass'));
+    _password = (prefs.getString('pass'));
     print(_email);
-    print(_pass);
+    print(_password);
     if (_email.length > 1) {
       _emcontroller.text = _email;
-      _pscontroller.text = _pass;
+      _pscontroller.text = _password;
       setState(() {
         _isChecked = true;
       });

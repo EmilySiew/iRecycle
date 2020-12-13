@@ -128,15 +128,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Registration...");
     await pr.show();
-    http.post("http://techvestigate.com/irecycle/php/register.php",
+    http.post("https://techvestigate.com/irecycle/php/register.php",
         body: {
           "name": _name,
           "email": _email,
-          "password": _password,
           "phone": _phone,
+          "password": _password,
         }).then((res) {
       print(res.body);
-      if (res.body == "success") {
+      if (res.body == "Registration successful") {
         Toast.show(
           "Registration success. An email has been sent to .$_email. Please check your email for OTP verification. Also check in your spam folder.",
           context,

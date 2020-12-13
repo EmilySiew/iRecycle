@@ -27,7 +27,7 @@ dependencies:
   toast: ^0.1.5
   progress_dialog:
   image_picker: 
-  http: 
+  http:
   
 
 

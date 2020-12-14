@@ -7,7 +7,7 @@ import 'package:toast/toast.dart';
 
 final TextEditingController _emcontroller = TextEditingController();
 String _email = "";
-String urlpw = "http://techvestigate.com/irecycle/php/forgetPassword.php";
+String urlpw = "https://techvestigate.com/irecycle/php/forgetPassword.php";
 
 
 class ForgotpwScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ForgotpwState extends State<ForgotpwScreen> {
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Text('Reset Password'),
-          backgroundColor: Colors.green[300],
+          backgroundColor: Colors.teal,
         ),
         body: new Container(
           /*decoration: BoxDecoration(
@@ -53,7 +53,7 @@ class _ForgotpwState extends State<ForgotpwScreen> {
                 minWidth: 300,
                 height: 50,
                 child: Text('Submit'),
-                color: Colors.green[300],
+                color: Colors.teal[900],
                 textColor: Colors.white,
                 elevation: 15,
                 onPressed: _onSubmit,
@@ -62,7 +62,7 @@ class _ForgotpwState extends State<ForgotpwScreen> {
               GestureDetector(
                   onTap: _onBackPress,
                   child: Text('Return to Sign In',
-                      style: TextStyle(fontSize: 16, color: Colors.blue))),
+                      style: TextStyle(fontSize: 16, color: Colors.teal))),
             ],
           ),
         ),
@@ -100,13 +100,13 @@ class _ForgotpwState extends State<ForgotpwScreen> {
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         
         _emcontroller.text = '';
-        //pr.dismiss();
+        pr.hide();
         
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => LoginPage()));
         
       }).catchError((err) {
-        //pr.dismiss();
+        pr.hide();
         print(err);
       });
     } else {}

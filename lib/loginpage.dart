@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:recycle/menu_dashboard_layout.dart';
+import 'package:recycle/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:recycle/registrationscreen.dart';
@@ -85,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
               minWidth: 300,
               height: 50,
               child: Text('Login'),
-              color: Colors.green[300],
+              color: Colors.teal[800],
               textColor: Colors.white,
               elevation: 20,
               onPressed: _onLogin,
@@ -118,37 +120,46 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _onLogin() {
+  Future<void> _onLogin() async {
     _email = _emcontroller.text;
     _password = _pscontroller.text;
-    print(_email);
-    print(_password);
-    if (_checkEmail(_email) && _password.length > 5) {
-      ProgressDialog pr = new ProgressDialog(context, 
+    ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
-      pr.style(message: "Login in");
-      pr.show();
-      http.post(urlLogin, body: {
-        "email": _email,
-        "password": _password,
-      }).then((res){
-        print(res.statusCode);
-        Toast.show(res.body, context,
-          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        if (res.body == "success") {
-          pr.hide();
-          Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
-        }else{
-          pr.hide();
-        }
-      }).catchError((err) {
-        pr.hide();
-        print(err);
-      });
-    } else {
-      Toast.show("Invalid email or password", context,
-          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-    }
+    pr.style(message: "Login...");
+    await pr.show();
+    http.post("https://techvestigate.com/irecycle/php/login.php", body: {
+      "email": _email,
+      "password": _password,
+    }).then((res) {
+      print(res.body);
+      List userdata = res.body.split(",");
+      if (userdata[0] == "success") {
+        Toast.show(
+          "Login Success",
+          context,
+          duration: Toast.LENGTH_LONG,
+          gravity: Toast.TOP,
+        );
+        User user = new User(
+            email: _email,
+            name: userdata[1],
+            password: _password,
+            phone: userdata[2],
+            date: userdata[3]);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) => MainScreen(user: user)));
+      } else {
+        Toast.show(
+          "Login failed",
+          context,
+          duration: Toast.LENGTH_LONG,
+          gravity: Toast.TOP,
+        );
+      }
+    }).catchError((err) {
+      print(err);
+    });
+    await pr.hide();
   }
 
   void _onChange(bool value) {

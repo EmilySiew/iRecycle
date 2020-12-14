@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       minWidth: 300,
                       height: 50,
                       child: Text('Register'),
-                      color: Colors.black,
+                      color: Colors.teal[900],
                       textColor: Colors.white,
                       elevation: 15,
                       onPressed: _onRegister,
@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     GestureDetector(
                         onTap: _onLogin,
                         child: Text('Already register',
-                            style: TextStyle(fontSize: 16))),
+                            style: TextStyle(fontSize: 16, color: Colors.teal))),
                   ],
                 ),
               ))),

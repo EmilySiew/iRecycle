@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
               margin: EdgeInsets.symmetric(vertical: 30,horizontal: 20),
-              decoration: BoxDecoration(
+              /*decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20)
               ),
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icon(Icons.search),
                   Text('Search item to recycle'),
                 ],
-              ),
+              ),*/
             ),
 
             Container(height: 120,
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(10)
                         ),
                         child: Image.asset(categories[index]['iconPath'],       height: 50,
-                          width: 50,color: Colors.grey[700],),
+                          width: 50,),
                       ),
                       Text(categories[index]['name'])
                     ],

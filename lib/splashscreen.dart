@@ -74,7 +74,7 @@ class _ProgressIndicatorState extends State<ProgressIndicator>
         child: new Container(
       child: CircularProgressIndicator(
         value: animation.value,
-        valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+        valueColor: new AlwaysStoppedAnimation<Color>(Colors.teal),
       ),
     ));
   }

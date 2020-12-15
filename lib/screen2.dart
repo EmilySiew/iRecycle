@@ -68,7 +68,7 @@ class Screen2 extends StatelessWidget {
               height: 120,
 child: Row(
   children: [
-    Container(
+    /*Container(
       height: 60,
       width: 70,
       decoration: BoxDecoration(
@@ -76,13 +76,13 @@ child: Row(
 
           borderRadius: BorderRadius.circular(20)),
       child: Icon(Icons.favorite_border,color: Colors.white,),
-    ),
+    ),*/
     SizedBox(width: 10,),
     Expanded(
       child: Container(
         height: 60,
         decoration: BoxDecoration(color: primaryGreen,borderRadius: BorderRadius.circular(20)),
-        child: Center(child: Text('Recycle',style: TextStyle(color: Colors.white,fontSize: 24),)),
+        child: Center(child: Text('Collect Item',style: TextStyle(color: Colors.white,fontSize: 24),)),
       ),
     )
   ],

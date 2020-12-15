@@ -7,11 +7,11 @@ List<BoxShadow> shadowList = [
 ];
 
 List<Map> categories = [
-  {'name': 'Paper', 'iconPath': 'assets/images/paper.PNG'},
-  {'name': 'Glass', 'iconPath': 'assets/images/glass.PNG'},
-  {'name': 'Metal', 'iconPath': 'assets/images/metal.PNG'},
-  {'name': 'Plastic', 'iconPath': 'assets/images/plastic.PNG'},
-  {'name': 'Electronics', 'iconPath': 'assets/images/electronics.PNG'}
+  {'name': ' Paper', 'iconPath': 'assets/images/paper.PNG'},
+  {'name': ' Glass', 'iconPath': 'assets/images/glass.PNG'},
+  {'name': ' Metal', 'iconPath': 'assets/images/metal.PNG'},
+  {'name': ' Plastic', 'iconPath': 'assets/images/plastic.PNG'},
+  {'name': ' Electronics', 'iconPath': 'assets/images/electronics.PNG'}
 ];
 
 List<Map> drawerItems=[
@@ -22,10 +22,6 @@ List<Map> drawerItems=[
   {
     'icon': Icons.mail,
     'title' : 'Collect'
-  },
-  {
-    'icon': Icons.favorite,
-    'title' : 'Favorites'
   },
   {
     'icon': FontAwesomeIcons.userAlt,

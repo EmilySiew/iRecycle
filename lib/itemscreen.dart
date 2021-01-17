@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:recycle/user.dart';
+import 'package:recycle/item.dart';
 
-class AddItemPage extends StatelessWidget {
+class ItemScreen extends StatelessWidget {
   final User user;
-  const AddItemPage({Key key, this.user}) : super(key: key);
+  final Item item;
+
+  const ItemScreen({Key key, this.user, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "My Accounts",
+        "ItemDetail",
         style: TextStyle(fontWeight: FontWeight.w900, fontSize: 28),
       ),
     );

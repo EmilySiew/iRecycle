@@ -225,7 +225,8 @@ class _GlassPageState extends State<GlassPage>{
         itemname: itemlist[index]['itemname'],
         weight: itemlist[index]['weight'],
         image: itemlist[index]['image'],
-        date: itemlist[index]['date'],);
+        date: itemlist[index]['date'],
+        itemworker: itemlist[index][null]);
         
 
     Navigator.push(

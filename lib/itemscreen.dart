@@ -13,13 +13,14 @@ class ItemScreen extends StatefulWidget {
   final User user;
   final Item item;
 
-  const ItemScreen({Key key, this.user, this.item}) : super(key: key);
+  const ItemScreen({Key key, @required this.user, @required this.item})
+      : super(key: key);
 
   @override
   _ItemScreenState createState() => _ItemScreenState();
 }
 
-class _ItemScreenState extends State<ItemScreen>{
+class _ItemScreenState extends State<ItemScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -96,7 +97,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
           width: 280,
           height: 200,
           child: Image.network(
-            "https://techvestigate.com/irecycle/images/${widget.item.image}.jpg",
+              "https://techvestigate.com/irecycle/images/${widget.item.image}.jpg",
               fit: BoxFit.fill),
         ),
         SizedBox(
@@ -108,7 +109,9 @@ class _DetailInterfaceState extends State<DetailInterface> {
               fontWeight: FontWeight.bold,
             )),
         Text(widget.item.date),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         Container(
           alignment: Alignment.topLeft,
           child: Column(
@@ -179,15 +182,14 @@ class _DetailInterfaceState extends State<DetailInterface> {
   }
 
   void _onAcceptItem() {
-     if (widget.user.email=="user@noregister"){
+    /*if (widget.user.email=="user@noregister"){
       Toast.show("Please register to view accepted item", context,
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
       return;
-    }else{
-      _showDialog();
-    }
+    }else{*/
+    _showDialog();
+    //}
     print("RECYCLE ITEM");
-    
   }
 
   void _showDialog() {
@@ -221,35 +223,37 @@ class _DetailInterfaceState extends State<DetailInterface> {
   }
 
   Future<String> acceptRequest() async {
-    String urlLoadETs = "https://techvestigate.com/irecycle/php/acceptitem.php";
-    ProgressDialog pr = new ProgressDialog(context,
+    String urlLoadItems =
+        "https://techvestigate.com/irecycle/php/acceptitem.php";
+    /*ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Accepting Recycle Item");
-    pr.show();
-    http.post(urlLoadETs, body: {
-      "etid": widget.item.itemid,
+    pr.show();*/
+    http.post(urlLoadItems, body: {
+      "itemid": widget.item.itemid,
       "email": widget.user.email,
     }).then((res) {
       print(res.body);
       if (res.body == "success") {
         Toast.show("Success", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-            pr.hide();
-            _onLogin(widget.user.email, context);
+        //pr.hide();
+        //_onLogin(widget.user.email, context);
       } else {
         Toast.show("Failed", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-            pr.hide();
+        //pr.hide();
       }
     }).catchError((err) {
       print(err);
-      pr.hide();
+      //pr.hide();
     });
     return null;
   }
 
-   void _onLogin(String email, BuildContext ctx) {
-     String urlgetuser = "http://itschizo.com/emily_siew/myETrash/php/get_user.php";
+  void _onLogin(String email, BuildContext ctx) {
+    String urlgetuser =
+        "http://itschizo.com/emily_siew/myETrash/php/get_user.php";
 
     http.post(urlgetuser, body: {
       "email": email,
@@ -259,10 +263,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
       List dres = string.split(",");
       print(dres);
       if (dres[0] == "success") {
-        User user = new User(
-            name: dres[1],
-            email: dres[2],
-            phone: dres[3]);
+        User user = new User(name: dres[1], email: dres[2], phone: dres[3]);
         Navigator.push(ctx,
             MaterialPageRoute(builder: (context) => MainScreen(user: user)));
       }
@@ -272,8 +273,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
   }
 }
 
-
-  /*@override
+/*@override
   Widget build(BuildContext context) {
     return Center(
       child: Text(

@@ -9,13 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget with NavigationStates {
   final User user;
-  const HomePage({Key key, this.user}) : super(key: key);
+  const HomePage({Key key, @required this.user}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
-  GlobalKey<RefreshIndicatorState> refreshKey; 
+  GlobalKey<RefreshIndicatorState> refreshKey;
 
   List itemList;
   double screenHeight, screenWidth;
@@ -29,74 +30,74 @@ class _HomePageState extends State<HomePage> {
     //TextEditingController _itemnamecontroller = TextEditingController();
 
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Recycle Category',
-              style: TextStyle(fontSize: 20)),
-          backgroundColor: Colors.teal[200],
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Recycle Category', style: TextStyle(fontSize: 20)),
+        backgroundColor: Colors.teal[200],
+      ),
+      body: GridView(
+        padding: EdgeInsets.only(left: 10, right: 10, bottom: 30, top: 80),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 20,
         ),
-        
-        body: GridView(
-          padding: EdgeInsets.only(left:10, right:10, bottom:30, top: 80),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-        ),
-
-        
         children: <Widget>[
           GestureDetector(
-            child: Container(child: Image.asset('assets/images/paper.PNG'),),
-            onTap:(){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => PaperPage(
-                  //item: item,
-                  user: widget.user,
-                )));
-              //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPaperClickedEvent);
-            }
-          ),
+              child: Container(
+                child: Image.asset('assets/images/paper.PNG'),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => PaperPage(
+                              //item: item,
+                              user: widget.user,
+                            )));
+                //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPaperClickedEvent);
+              }),
           GestureDetector(
-            child: Container(child: Image.asset('assets/images/metal.PNG'),),
-            onTap:(){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => MetalPage(
-                  //item: item,
-                  user: widget.user,
-                )));
-              //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyMetalClickedEvent);
-            }
-          ),
+              child: Container(
+                child: Image.asset('assets/images/metal.PNG'),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => MetalPage(
+                              //item: item,
+                              user: widget.user,
+                            )));
+                //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyMetalClickedEvent);
+              }),
           GestureDetector(
-            child:Container(child: Image.asset('assets/images/plastic.PNG'),),
-            onTap:(){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => PlasticPage(
-                  //item: item,
-                  user: widget.user,
-                )));
-              //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPlasticClickedEvent);
-            }
-          ),
+              child: Container(
+                child: Image.asset('assets/images/plastic.PNG'),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => PlasticPage(
+                              //item: item,
+                              user: widget.user,
+                            )));
+                //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPlasticClickedEvent);
+              }),
           GestureDetector(
-            child: Container(child: Image.asset('assets/images/glass.PNG'),),
-            onTap:(){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => GlassPage(
-                  //item: item,
-                  user: widget.user,
-                )));
-              //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyGlassClickedEvent);
-            }
-          ),
+              child: Container(
+                child: Image.asset('assets/images/glass.PNG'),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => GlassPage(
+                              //item: item,
+                              user: widget.user,
+                            )));
+                //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyGlassClickedEvent);
+              }),
         ],
       ),
     );

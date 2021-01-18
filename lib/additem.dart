@@ -3,7 +3,7 @@ import 'package:recycle/user.dart';
 
 class AddItemPage extends StatelessWidget {
   final User user;
-  const AddItemPage({Key key, this.user}) : super(key: key);
+  const AddItemPage({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

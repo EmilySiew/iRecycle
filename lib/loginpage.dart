@@ -36,10 +36,10 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomPadding: false,
       body: new Container(
         decoration: BoxDecoration(
-          /*image: DecorationImage(
+            /*image: DecorationImage(
               image: AssetImage('assets/images/background.jpg'),
               fit: BoxFit.cover),*/
-        ),
+            ),
         padding: EdgeInsets.all(30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,22 +97,20 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: <Widget>[
                 GestureDetector(
-                    onTap: _onRegister,
-                    child: Text('Register New Account',
-                        style: TextStyle(fontSize: 16, color: Colors.blue)
-                        ),
-                        ),
+                  onTap: _onRegister,
+                  child: Text('Register New Account',
+                      style: TextStyle(fontSize: 16, color: Colors.blue)),
+                ),
                 Spacer(),
                 GestureDetector(
-                    onTap: _onForgot,
-                    child:
-                        Text('Forgot Password', 
-                        style: TextStyle(fontSize: 16,color: Colors.blue),
-                        ),
-                        ),
+                  onTap: _onForgot,
+                  child: Text(
+                    'Forgot Password',
+                    style: TextStyle(fontSize: 16, color: Colors.blue),
+                  ),
+                ),
               ],
             )
-            
           ],
         ),
       ),
@@ -145,8 +143,11 @@ class _LoginPageState extends State<LoginPage> {
             password: _password,
             phone: userdata[2],
             date: userdata[3]);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (BuildContext context) => MainScreen(user: user)));
+        print('hi' + user.email);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => MainScreen(user: user)));
       } else {
         Toast.show(
           "Login failed",
@@ -178,15 +179,13 @@ class _LoginPageState extends State<LoginPage> {
   void _onRegister() {
     print('onRegister');
     Navigator.push(
-      context, MaterialPageRoute(builder: (context)=>RegisterScreen())
-    );
+        context, MaterialPageRoute(builder: (context) => RegisterScreen()));
   }
 
   void _onForgot() {
     print('Forgot');
     Navigator.push(
-      context, MaterialPageRoute(builder: (context)=>ForgotpwScreen())
-    );
+        context, MaterialPageRoute(builder: (context) => ForgotpwScreen()));
   }
 
   void savePref(bool value) async {
@@ -243,5 +242,4 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
-
 }

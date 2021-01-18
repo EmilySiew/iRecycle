@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import '../pages/myaccountspage.dart';
 import '../pages/myorderspage.dart';
+import 'package:recycle/user.dart';
+
 //import '../category/paperpage.dart';
 //import '../category/metalpage.dart';
 //import '../category/plasticpage.dart';
@@ -12,23 +15,22 @@ enum NavigationEvents {
   HomePageClickedEvent,
   MyAccountClickedEvent,
   MyOrdersClickedEvent,
-  //MyPaperClickedEvent,
-  //MyMetalClickedEvent,
-  //MyPlasticClickedEvent,
-  //MyGlassClickedEvent,
 }
 
 abstract class NavigationStates {}
 
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
+  final User user;
+  NavigationBloc({@required this.user});
+
   @override
-  NavigationStates get initialState => HomePage();
+  NavigationStates get initialState => HomePage(user: user);
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
     switch (event) {
       case NavigationEvents.HomePageClickedEvent:
-        yield HomePage();
+        yield HomePage(user: user);
         break;
       case NavigationEvents.MyAccountClickedEvent:
         yield MyAccountsPage();

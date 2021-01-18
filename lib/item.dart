@@ -4,7 +4,8 @@ class Item {
       itemname,
       weight,
       image,
-      date;
+      date,
+      itemworker;
       
   Item(
       {this.itemid,
@@ -12,5 +13,6 @@ class Item {
       this.itemname,
       this.weight,
       this.image,
-      this.date});
+      this.date,
+      this.itemworker});
 }

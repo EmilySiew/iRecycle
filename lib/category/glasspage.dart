@@ -10,7 +10,7 @@ import 'package:recycle/additem.dart';
 import 'package:recycle/item.dart';
 import 'package:recycle/itemscreen.dart';
 
-class GlassPage extends StatefulWidget with NavigationStates {
+class GlassPage extends StatefulWidget {
   final User user;
   const GlassPage({Key key, this.user}):super(key:key);
 
@@ -44,12 +44,12 @@ class _GlassPageState extends State<GlassPage>{
         appBar: AppBar(
           centerTitle: true,
           title: Text('Category : Glass',
-              style: TextStyle(fontSize: 20, color: Colors.white)),
-          backgroundColor: Colors.teal[700],
+              style: TextStyle(fontSize: 20)),
+          backgroundColor: Colors.teal[200],
           actions: <Widget>[
             Flexible(
               child: IconButton(
-                icon: Icon(Icons.add, color: Colors.white, size: 35),
+                icon: Icon(Icons.add, size: 30),
                 onPressed: () {
                   _addItemScreen();
                 },

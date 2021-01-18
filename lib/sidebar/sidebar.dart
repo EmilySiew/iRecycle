@@ -68,34 +68,34 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: const Color(0xFF262AAA),
+                  color: Colors.teal[900],
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 100,
+                        height: 70,
                       ),
                       ListTile(
                         title: Text(
-                          "Prateek",
+                          "Emily Siew",
                           style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          "www.techieblossom.com",
+                          "emilysiew98@gmail.com",
                           style: TextStyle(
-                            color: Color(0xFF1BB5FD),
+                            color: Colors.teal[100],
                             fontSize: 18,
                           ),
                         ),
                         leading: CircleAvatar(
                           child: Icon(
                             Icons.perm_identity,
-                            color: Colors.white,
+                            //color: Colors.white,
                           ),
                           radius: 40,
                         ),
                       ),
                       Divider(
-                        height: 64,
+                        height: 60,
                         thickness: 0.5,
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,
@@ -110,7 +110,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         },
                       ),
                       MenuItem(
-                        icon: Icons.person,
+                        icon: Icons.shopping_basket,
                         title: "Collected Item",
                         onTap: () {
                           onIconPressed();
@@ -118,17 +118,18 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         },
                       ),
                       MenuItem(
-                        icon: Icons.shopping_basket,
+                        icon: Icons.person,
                         title: "My Orders",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
                         },
                       ),
-                      MenuItem(
+                      /*MenuItem(
                         icon: Icons.card_giftcard,
                         title: "Wishlist",
-                      ),
+                      ),*/
+                      SizedBox(height: 180),
                       Divider(
                         height: 64,
                         thickness: 0.5,
@@ -136,10 +137,10 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         indent: 32,
                         endIndent: 32,
                       ),
-                      MenuItem(
+                      /*MenuItem(
                         icon: Icons.settings,
                         title: "Settings",
-                      ),
+                      ),*/
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
@@ -159,12 +160,12 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                     child: Container(
                       width: 35,
                       height: 110,
-                      color: Color(0xFF262AAA),
+                      color: Colors.teal[900],
                       alignment: Alignment.centerLeft,
                       child: AnimatedIcon(
                         progress: _animationController.view,
                         icon: AnimatedIcons.menu_close,
-                        color: Color(0xFF1BB5FD),
+                        color: Colors.white,
                         size: 25,
                       ),
                     ),

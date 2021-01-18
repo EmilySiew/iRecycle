@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import '../pages/myaccountspage.dart';
 import '../pages/myorderspage.dart';
-import '../category/paperpage.dart';
-import '../category/metalpage.dart';
-import '../category/plasticpage.dart';
-import '../category/glasspage.dart';
+//import '../category/paperpage.dart';
+//import '../category/metalpage.dart';
+//import '../category/plasticpage.dart';
+//import '../category/glasspage.dart';
 
 import '../pages/homepage.dart';
 
@@ -12,10 +12,10 @@ enum NavigationEvents {
   HomePageClickedEvent,
   MyAccountClickedEvent,
   MyOrdersClickedEvent,
-  MyPaperClickedEvent,
-  MyMetalClickedEvent,
-  MyPlasticClickedEvent,
-  MyGlassClickedEvent,
+  //MyPaperClickedEvent,
+  //MyMetalClickedEvent,
+  //MyPlasticClickedEvent,
+  //MyGlassClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -36,7 +36,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.MyOrdersClickedEvent:
         yield MyOrdersPage();
         break;
-      case NavigationEvents.MyPaperClickedEvent:
+      /*case NavigationEvents.MyPaperClickedEvent:
         yield PaperPage();
         break;
       case NavigationEvents.MyMetalClickedEvent:
@@ -47,7 +47,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.MyGlassClickedEvent:
         yield GlassPage();
-        break;
+        break;*/
     }
   }
 }

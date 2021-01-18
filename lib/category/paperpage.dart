@@ -200,6 +200,7 @@ class _PaperPageState extends State<PaperPage>{
         setState(() {
           var jsondata = json.decode(res.body);
           itemlist = jsondata["item"];
+          itemlist.removeWhere((element) => element['category'] != "Paper");
         });
       }
     }).catchError((err) {
@@ -225,7 +226,8 @@ class _PaperPageState extends State<PaperPage>{
         itemname: itemlist[index]['itemname'],
         weight: itemlist[index]['weight'],
         image: itemlist[index]['image'],
-        date: itemlist[index]['date'],);
+        date: itemlist[index]['date'],
+        itemworker: itemlist[index][null]);
         
 
     Navigator.push(

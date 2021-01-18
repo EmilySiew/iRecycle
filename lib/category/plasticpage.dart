@@ -200,6 +200,7 @@ class _PlasticPageState extends State<PlasticPage>{
         setState(() {
           var jsondata = json.decode(res.body);
           itemlist = jsondata["item"];
+          itemlist.removeWhere((element) => element['category'] != "Plastic");
         });
       }
     }).catchError((err) {
@@ -225,9 +226,9 @@ class _PlasticPageState extends State<PlasticPage>{
         itemname: itemlist[index]['itemname'],
         weight: itemlist[index]['weight'],
         image: itemlist[index]['image'],
-        date: itemlist[index]['date'],);
+        date: itemlist[index]['date'],
+        itemworker: itemlist[index][null]);
         
-
     Navigator.push(
         context,
         MaterialPageRoute(

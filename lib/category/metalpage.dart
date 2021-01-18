@@ -10,15 +10,15 @@ import 'package:recycle/additem.dart';
 import 'package:recycle/item.dart';
 import 'package:recycle/itemscreen.dart';
 
-class MetalPage extends StatefulWidget{
+class MetalPage extends StatefulWidget {
   final User user;
-  const MetalPage({Key key, this.user}):super(key:key);
+  const MetalPage({Key key, this.user}) : super(key: key);
 
   @override
   _MetalPageState createState() => _MetalPageState();
 }
 
-class _MetalPageState extends State<MetalPage>{
+class _MetalPageState extends State<MetalPage> {
   GlobalKey<RefreshIndicatorState> refreshKey;
 
   List itemlist;
@@ -32,7 +32,6 @@ class _MetalPageState extends State<MetalPage>{
     _loadMetal();
   }
 
-  
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
@@ -43,8 +42,7 @@ class _MetalPageState extends State<MetalPage>{
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Category : Metal',
-              style: TextStyle(fontSize: 20)),
+          title: Text('Category : Metal', style: TextStyle(fontSize: 20)),
           backgroundColor: Colors.teal[200],
           actions: <Widget>[
             Flexible(
@@ -77,24 +75,25 @@ class _MetalPageState extends State<MetalPage>{
                     return Padding(
                         padding: EdgeInsets.all(1),
                         child: Card(
-                          shape: Border(
-                          right: BorderSide(color: Colors.green[200], width:5),
-                          bottom: BorderSide(color: Colors.green[200], width: 1)
-                        ),
+                            shape: Border(
+                                right: BorderSide(
+                                    color: Colors.green[200], width: 5),
+                                bottom: BorderSide(
+                                    color: Colors.green[200], width: 1)),
                             color: Colors.grey[200],
                             child: InkWell(
                               onTap: () => _loadItemDetail(index),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                              //child: SingleChildScrollView(
+                                //child: SingleChildScrollView(
                                 child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   //children: [
-                                    //SizedBox(height: 3),
-                                    //Stack(
-                                      children: <Widget>[
-                                        Container(
-                                          /*height: 150,
+                                  //SizedBox(height: 3),
+                                  //Stack(
+                                  children: <Widget>[
+                                    Container(
+                                        /*height: 150,
                                             width: 150,
                                             child: CachedNetworkImage(
                                               imageUrl:
@@ -109,53 +108,47 @@ class _MetalPageState extends State<MetalPage>{
                                                 size: screenWidth / 2,
                                               ),
                                             )*/
-                                          height:150,
-                                          width:150,
-                                          decoration: BoxDecoration(
+                                        height: 150,
+                                        width: 150,
+                                        decoration: BoxDecoration(
                                             shape: BoxShape.rectangle,
-                                            border: Border.all(color: Colors.black,width: 1),
+                                            border: Border.all(
+                                                color: Colors.black, width: 1),
                                             image: DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: NetworkImage(
-                                                "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
-                                              )
-                                            )
-                                            )
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: Column(
-                                                mainAxisSize:MainAxisSize.min,
+                                                fit: BoxFit.fill,
+                                                image: NetworkImage(
+                                                  "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
+                                                )))),
+                                    Expanded(
+                                        child: Container(
+                                            child: Column(
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: <Widget>[
-                                                  
-                                                  Text(
-                                                    itemlist[index]['itemname'],
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.indigo[900]),
-                                                  ),
-                                                  Text(
-                                                    "Category : " +
-                                                    itemlist[index]['category'],
-                                                    style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.indigo[800]),
-                                                  ),
-                                                  Text(
-                                                    "Weight : " +
-                                                        itemlist[index]['weight'] +
-                                                        "kg",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.indigo[700]),
-                                                  ),
-                                                  Text(itemlist[index]['date']),
+                                          Text(
+                                            itemlist[index]['itemname'],
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.indigo[900]),
+                                          ),
+                                          Text(
+                                            "Category : " +
+                                                itemlist[index]['category'],
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.indigo[800]),
+                                          ),
+                                          Text(
+                                            "Weight : " +
+                                                itemlist[index]['weight'] +
+                                                "kg",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.indigo[700]),
+                                          ),
+                                          Text(itemlist[index]['date']),
+                                        ]))),
 
-                                                ]
-                                              ))
-                                    ),
-                                    
                                     /*Text(
                                       itemlist[index]['itemname'],
                                       style: TextStyle(
@@ -200,6 +193,7 @@ class _MetalPageState extends State<MetalPage>{
         setState(() {
           var jsondata = json.decode(res.body);
           itemlist = jsondata["item"];
+          itemlist.removeWhere((element) => element['category'] != "Metal");
         });
       }
     }).catchError((err) {
@@ -220,13 +214,13 @@ class _MetalPageState extends State<MetalPage>{
   _loadItemDetail(int index) {
     print(itemlist[index]['itemname']);
     Item item = new Item(
-        itemid: itemlist[index]['itemid'],
-        category: itemlist[index]['category'],
-        itemname: itemlist[index]['itemname'],
-        weight: itemlist[index]['weight'],
-        image: itemlist[index]['image'],
-        date: itemlist[index]['date'],);
-        
+      itemid: itemlist[index]['itemid'],
+      category: itemlist[index]['category'],
+      itemname: itemlist[index]['itemname'],
+      weight: itemlist[index]['weight'],
+      image: itemlist[index]['image'],
+      date: itemlist[index]['date'],
+      itemworker: itemlist[index][null]);
 
     Navigator.push(
         context,
@@ -236,9 +230,6 @@ class _MetalPageState extends State<MetalPage>{
                   user: widget.user,
                 )));
   }
-
-
-
-
-
 }
+
+// Hello Emily Siew

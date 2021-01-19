@@ -222,7 +222,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Accepting Recycle Item");
-    pr.show();
+    await pr.show();
     http.post(urlLoadItems, body: {
       "itemid": widget.item.itemid,
       "email": widget.user.email,
@@ -231,17 +231,18 @@ class _DetailInterfaceState extends State<DetailInterface> {
       if (res.body == "success") {
         Toast.show("Success", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        pr.hide();
+        //pr.hide();
         _onLogin(widget.user.email, context);
       } else {
         Toast.show("Failed", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        pr.hide();
+        //pr.hide();
       }
     }).catchError((err) {
       print(err);
       pr.hide();
     });
+    await pr.hide();
     return null;
   }
 

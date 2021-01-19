@@ -28,7 +28,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield HomePage(user: user);
         break;
       case NavigationEvents.CollectItemClickedEvent:
-        yield CollectItemPage();
+        yield CollectItemPage(user: user);
         break;
       case NavigationEvents.MyOrdersClickedEvent:
         yield MyOrdersPage();

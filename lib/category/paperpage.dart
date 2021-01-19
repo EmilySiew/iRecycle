@@ -70,6 +70,12 @@ class _PaperPageState extends State<PaperPage>{
                       color: Colors.black),
                 ))))
               : Flexible(
+                child: RefreshIndicator(
+                  key: refreshKey,
+                  color: Colors.deepOrange,
+                  onRefresh: () async {
+                    _loadPaper();
+                  },
                   child: GridView.count(
                   crossAxisCount: 1,
                   childAspectRatio: (screenWidth / screenHeight) / 0.2,
@@ -177,7 +183,7 @@ class _PaperPageState extends State<PaperPage>{
                               ),
                             )));
                   }),
-                ))
+                )))
         ]),
       ),
     );

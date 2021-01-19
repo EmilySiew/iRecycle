@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
             password: _password,
             phone: userdata[2],
             date: userdata[3]);
-        print('hi' + user.email);
+        print('hi ' + user.email);
         Navigator.push(
             context,
             MaterialPageRoute(

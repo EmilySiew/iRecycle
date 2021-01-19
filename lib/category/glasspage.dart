@@ -68,6 +68,12 @@ class _GlassPageState extends State<GlassPage> {
                       color: Colors.black),
                 ))))
               : Flexible(
+                child: RefreshIndicator(
+                  key: refreshKey,
+                  color: Colors.deepOrange,
+                  onRefresh: () async {
+                    _loadGlass();
+                  },
                   child: GridView.count(
                   crossAxisCount: 1,
                   childAspectRatio: (screenWidth / screenHeight) / 0.2,
@@ -170,7 +176,7 @@ class _GlassPageState extends State<GlassPage> {
                               ),
                             )));
                   }),
-                ))
+                )))
         ]),
       ),
     );

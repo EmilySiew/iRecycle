@@ -103,7 +103,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ),
                       MenuItem(
                         icon: Icons.home,
-                        title: "Recycle Item",
+                        title: "HomePage",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
@@ -118,8 +118,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         },
                       ),
                       MenuItem(
-                        icon: Icons.person,
-                        title: "My Orders",
+                        icon: Icons.replay_circle_filled,
+                        title: "Recycle Item",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);

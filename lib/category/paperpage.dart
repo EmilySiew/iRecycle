@@ -233,6 +233,7 @@ class _PaperPageState extends State<PaperPage>{
         weight: itemlist[index]['weight'],
         image: itemlist[index]['image'],
         date: itemlist[index]['date'],
+        itemowner: itemlist[index]['itemowner'],
         itemworker: itemlist[index][null]);
         
 

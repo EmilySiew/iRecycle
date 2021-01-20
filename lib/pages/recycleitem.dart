@@ -1,61 +1,61 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import '../bloc.navigation_bloc/navigation_bloc.dart';
-import 'package:recycle/user.dart';
-import 'package:http/http.dart' as http;
-import 'package:progress_dialog/progress_dialog.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:recycle/additem.dart';
 import 'package:recycle/item.dart';
-import 'package:recycle/itemscreen.dart';
+import 'package:recycle/user.dart';
+import 'package:http/http.dart' as http;
+import 'package:toast/toast.dart';
 
-class MetalPage extends StatefulWidget {
+
+import '../bloc.navigation_bloc/navigation_bloc.dart';
+
+class RecycleItemPage extends StatefulWidget with NavigationStates {
   final User user;
-  const MetalPage({Key key, this.user}) : super(key: key);
+  const RecycleItemPage({Key key, @required this.user}) : super(key: key);
 
   @override
-  _MetalPageState createState() => _MetalPageState();
+  _RecycleItemState createState() => _RecycleItemState();
 }
 
-class _MetalPageState extends State<MetalPage> {
+class _RecycleItemState extends State<RecycleItemPage> {
   GlobalKey<RefreshIndicatorState> refreshKey;
 
   List itemlist;
   double screenHeight, screenWidth;
-  String titlecenter = "Loading Item..";
+  String titlecenter = "Loading Recycle Item...";
   bool visible = false;
 
   @override
   void initState() {
     super.initState();
-    _loadMetal();
+    _loadRecycleItem();
   }
 
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    //TextEditingController _itemnamecontroller = TextEditingController();
-
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Category : Metal', style: TextStyle(fontSize: 20)),
-          backgroundColor: Colors.teal[200],
-          actions: <Widget>[
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Recycle Item",
+        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
+        backgroundColor: Colors.teal[200],
+        actions: <Widget>[
             Flexible(
               child: IconButton(
-                icon: Icon(Icons.add, size: 30),
+                icon: Icon(Icons.add, size: 35),
                 onPressed: () {
                   _addItemScreen();
                 },
               ),
             ),
           ],
-        ),
-        body: Column(children: [
+      ),
+      body: Column(children: [
           itemlist == null
               ? Flexible(
                   child: Container(
@@ -72,7 +72,7 @@ class _MetalPageState extends State<MetalPage> {
                   key: refreshKey,
                   color: Colors.deepOrange,
                   onRefresh: () async {
-                    _loadMetal();
+                    _loadRecycleItem();
                   },
                   child: GridView.count(
                   crossAxisCount: 1,
@@ -88,32 +88,15 @@ class _MetalPageState extends State<MetalPage> {
                                     color: Colors.green[200], width: 1)),
                             color: Colors.grey[200],
                             child: InkWell(
-                              onTap: () => _loadItemDetail(index),
+                              onLongPress: () => _deleteItem(
+                                itemlist[index]['itemid'].toString(),
+                                itemlist[index]['itemname'].toString()
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                //child: SingleChildScrollView(
                                 child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  //children: [
-                                  //SizedBox(height: 3),
-                                  //Stack(
                                   children: <Widget>[
                                     Container(
-                                        /*height: 150,
-                                            width: 150,
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
-                                              fit: BoxFit.cover,
-                                              placeholder: (context, url) =>
-                                                  new CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      new Icon(
-                                                Icons.broken_image,
-                                                size: screenWidth / 2,
-                                              ),
-                                            )*/
                                         height: 150,
                                         width: 150,
                                         decoration: BoxDecoration(
@@ -154,52 +137,36 @@ class _MetalPageState extends State<MetalPage> {
                                           ),
                                           Text(itemlist[index]['date']),
                                         ]))),
-
-                                    /*Text(
-                                      itemlist[index]['itemname'],
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.indigo[900]),
-                                    ),
-                                    Text(
-                                      "Weight : " +
-                                          itemlist[index]['weight'] +
-                                          "kg",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.indigo[800]),
-                                    ),*/
                                   ],
                                 ),
                               ),
-                            )));
+                            )
+                            ));
                   }),
                 )))
         ]),
       ),
     );
   }
-
-  Future<void> _loadMetal() async {
+  Future<void> _loadRecycleItem() async {
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
-    pr.style(message: "Loading...");
+    pr.style(message: "Loading Posted Recycle Item...");
     await pr.show();
-    http.post("https://techvestigate.com/irecycle/php/loaditem.php",
-        body: {}).then((res) {
+    http.post("https://techvestigate.com/irecycle/php/loadRecycleitem.php",
+        body: {
+          "email": widget.user.email ?? "not available",
+        }).then((res) {
       print(res.body);
       if (res.body == "nodata") {
         itemlist = null;
         setState(() {
-          titlecenter = "No Item Found";
+          titlecenter = "There is no Recycle Item";
         });
       } else {
         setState(() {
           var jsondata = json.decode(res.body);
           itemlist = jsondata["item"];
-          itemlist.removeWhere((element) => element['category'] != "Metal");
         });
       }
     }).catchError((err) {
@@ -217,26 +184,69 @@ class _MetalPageState extends State<MetalPage> {
                 )));
   }
 
-  _loadItemDetail(int index) {
-    print(itemlist[index]['itemname']);
-    Item item = new Item(
-      itemid: itemlist[index]['itemid'],
-      category: itemlist[index]['category'],
-      itemname: itemlist[index]['itemname'],
-      weight: itemlist[index]['weight'],
-      image: itemlist[index]['image'],
-      date: itemlist[index]['date'],
-      itemowner: itemlist[index]['itemowner'],
-      itemworker: itemlist[index][null]);
-
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => ItemScreen(
-                  item: item,
-                  user: widget.user,
-                )));
+  void _deleteItem(String itemid, String itemname) {
+    print("Delete " + itemid);
+    _showDialog(itemid, itemname);
   }
-}
 
-// Hello Emily Siew
+  void _showDialog(String itemid, String itemname) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Delete " + itemname),
+          content: new Text("Are you sure you want to delete selected item?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Yes"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                deleteItem(itemid);
+              },
+            ),
+            new FlatButton(
+              child: new Text("No"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<String> deleteItem(String itemid) async {
+    String urlLoadItems = "https://techvestigate.com/irecycle/php/cancelitem.php";
+    ProgressDialog pr = new ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false);
+    pr.style(message: "Deleting Item");
+    await pr.show();
+    http.post(urlLoadItems, body: {
+      "itemid": itemid,
+    }).then((res) {
+      print(res.body);
+      if (res.body == "success") {
+        Toast.show("Success", context,
+            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+           
+      } else {
+        Toast.show("Failed", context,
+            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        
+      }
+    }).catchError((err) {
+      print(err);
+      
+    });
+    await pr.hide();
+    return null;
+  }
+
+
+
+
+}

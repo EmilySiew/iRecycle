@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import '../pages/collecteditem.dart';
-import '../pages/myorderspage.dart';
+import '../pages/recycleitem.dart';
 import 'package:recycle/user.dart';
 
 import '../pages/homepage.dart';
@@ -31,7 +31,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield CollectItemPage(user: user);
         break;
       case NavigationEvents.MyOrdersClickedEvent:
-        yield MyOrdersPage();
+        yield RecycleItemPage(user: user);
         break;
     }
   }

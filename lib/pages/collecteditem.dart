@@ -12,9 +12,8 @@ import 'package:http/http.dart' as http;
 
 class CollectItemPage extends StatefulWidget with NavigationStates {
   final User user;
-  final Item item;
   
-  const CollectItemPage({Key key, @required this.user, @required this.item}) : super(key: key);
+  const CollectItemPage({Key key, @required this.user}) : super(key: key);
 
   @override
   _CollectItemPageState createState() => _CollectItemPageState();

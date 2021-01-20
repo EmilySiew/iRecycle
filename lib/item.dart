@@ -5,6 +5,7 @@ class Item {
       weight,
       image,
       date,
+      itemowner,
       itemworker;
       
   Item(
@@ -14,5 +15,6 @@ class Item {
       this.weight,
       this.image,
       this.date,
+      this.itemowner,
       this.itemworker});
 }

@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Recycle Category', style: TextStyle(fontSize: 20)),
+        title: Text('Recycle Category', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
         backgroundColor: Colors.teal[200],
       ),
       body: GridView(

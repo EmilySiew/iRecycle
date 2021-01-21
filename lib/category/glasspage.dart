@@ -42,7 +42,7 @@ class _GlassPageState extends State<GlassPage> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Category : Glass', style: TextStyle(fontSize: 20)),
+          title: Text('Category : Glass', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
           actions: <Widget>[
             Flexible(

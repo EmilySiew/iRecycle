@@ -44,7 +44,7 @@ class _PlasticPageState extends State<PlasticPage>{
         appBar: AppBar(
           centerTitle: true,
           title: Text('Category : Plastic',
-              style: TextStyle(fontSize: 20)),
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
           actions: <Widget>[
             Flexible(

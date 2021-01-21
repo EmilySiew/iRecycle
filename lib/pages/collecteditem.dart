@@ -43,7 +43,7 @@ class _CollectItemPageState extends State<CollectItemPage> {
         appBar: AppBar(
           centerTitle: true,
           title: Text('Collected Item',
-              style: TextStyle(fontSize: 20)),
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
           backgroundColor: Colors.teal[200],
         ),
         body: Column(children: [

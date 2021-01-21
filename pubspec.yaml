@@ -26,9 +26,10 @@ dependencies:
   shared_preferences:
   toast: ^0.1.5
   progress_dialog:
-  image_picker: 
+  image_picker:
+  image_cropper: ^1.2.2
   http:
-  cached_network_image:
+  cached_network_image: ^2.0.0
   flutter_cache_manager:
   intl:
   google_maps_flutter:

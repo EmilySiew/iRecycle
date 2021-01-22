@@ -24,7 +24,7 @@ class _ForgotpwState extends State<ForgotpwScreen> {
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Text('Reset Password'),
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.teal[200],
         ),
         body: new Container(
           /*decoration: BoxDecoration(

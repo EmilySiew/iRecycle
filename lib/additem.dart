@@ -109,14 +109,14 @@ class _AddItemPageState extends State<AddItemPage> {
                         decoration: InputDecoration(
                             labelText: 'Weight', icon: Icon(Icons.line_weight_outlined))),
           
-                    SizedBox(height: 10),
+                    SizedBox(height: 50),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
                       minWidth: 300,
                       height: 50,
                       child: Text('Add Recycle Item'),
-                      color: Colors.black,
+                      color: Colors.teal,
                       textColor: Colors.white,
                       elevation: 15,
                       onPressed: newItemDialog,
@@ -158,7 +158,7 @@ class _AddItemPageState extends State<AddItemPage> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             content: new Container(
               //color: Colors.white,
-              height: screenHeight / 4,
+              height: screenHeight / 6,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -173,7 +173,7 @@ class _AddItemPageState extends State<AddItemPage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
                       )),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -182,13 +182,13 @@ class _AddItemPageState extends State<AddItemPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                         minWidth: 100,
-                        height: 100,
+                        height: 50,
                         child: Text('Camera',
                             style: TextStyle(
                               color: Colors.black,
                             )),
                         //color: Color.fromRGBO(101, 255, 218, 50),
-                        color:Colors.blueGrey,
+                        color:Colors.teal[200],
                         textColor: Colors.black,
                         elevation: 10,
                         onPressed: () =>
@@ -200,13 +200,13 @@ class _AddItemPageState extends State<AddItemPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                         minWidth: 100,
-                        height: 100,
+                        height: 50,
                         child: Text('Gallery',
                             style: TextStyle(
                               color: Colors.black,
                             )),
                         //color: Color.fromRGBO(101, 255, 218, 50),
-                        color:Colors.blueGrey,
+                        color:Colors.teal[200],
                         textColor: Colors.black,
                         elevation: 10,
                         onPressed: () => {

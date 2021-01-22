@@ -164,7 +164,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
                       borderRadius: BorderRadius.circular(20.0)),
                   height: 50,
                   child: Text(
-                    'RECYCLE ITEM',
+                    'COLLECT ITEM',
                     style: TextStyle(fontSize: 16),
                   ),
                   color: Colors.teal,

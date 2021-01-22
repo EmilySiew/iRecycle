@@ -46,16 +46,6 @@ class _PaperPageState extends State<PaperPage>{
           title: Text('Category : Paper',
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
-          actions: <Widget>[
-            Flexible(
-              child: IconButton(
-                icon: Icon(Icons.add, size: 30),
-                onPressed: () {
-                  _addItemScreen();
-                },
-              ),
-            ),
-          ],
         ),
         body: Column(children: [
           itemlist == null
@@ -213,15 +203,6 @@ class _PaperPageState extends State<PaperPage>{
       print(err);
     });
     await pr.hide();
-  }
-
-  void _addItemScreen() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => AddItemPage(
-                  user: widget.user,
-                )));
   }
 
   _loadItemDetail(int index) {

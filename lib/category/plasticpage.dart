@@ -46,16 +46,6 @@ class _PlasticPageState extends State<PlasticPage>{
           title: Text('Category : Plastic',
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
-          actions: <Widget>[
-            Flexible(
-              child: IconButton(
-                icon: Icon(Icons.add, color: Colors.white, size: 30),
-                onPressed: () {
-                  _addItemScreen();
-                },
-              ),
-            ),
-          ],
         ),
         body: Column(children: [
           itemlist == null
@@ -213,15 +203,6 @@ class _PlasticPageState extends State<PlasticPage>{
       print(err);
     });
     await pr.hide();
-  }
-
-  void _addItemScreen() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => AddItemPage(
-                  user: widget.user,
-                )));
   }
 
   _loadItemDetail(int index) {

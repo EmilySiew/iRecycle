@@ -180,7 +180,7 @@ class _RecycleItemState extends State<RecycleItemPage> {
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => AddItemPage(
-                  user: widget.user,
+                  user: widget.user, item: null,
                 )));
   }
 

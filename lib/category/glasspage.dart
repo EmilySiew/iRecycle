@@ -44,16 +44,6 @@ class _GlassPageState extends State<GlassPage> {
           centerTitle: true,
           title: Text('Category : Glass', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
-          actions: <Widget>[
-            Flexible(
-              child: IconButton(
-                icon: Icon(Icons.add, size: 30),
-                onPressed: () {
-                  _addItemScreen();
-                },
-              ),
-            ),
-          ],
         ),
         body: Column(children: [
           itemlist == null
@@ -208,14 +198,6 @@ class _GlassPageState extends State<GlassPage> {
     await pr.hide();
   }
 
-  void _addItemScreen() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => AddItemPage(
-                  user: widget.user,
-                )));
-  }
 
   _loadItemDetail(int index) {
     print(itemlist[index]['itemname']);

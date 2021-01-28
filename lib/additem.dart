@@ -1,12 +1,16 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
+//import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:recycle/item.dart';
 import 'package:recycle/user.dart';
 import 'package:toast/toast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:geolocator/geolocator.dart';
 
 class AddItemPage extends StatefulWidget {
   final User user;
@@ -20,94 +24,138 @@ class AddItemPage extends StatefulWidget {
 class _AddItemPageState extends State<AddItemPage> {
   final TextEditingController _itemnamecontroller = TextEditingController();
   final TextEditingController _itemweightcontroller = TextEditingController();
+  final TextEditingController categoryFilterController = TextEditingController();
   
   String _itemname = "";
   String _itemweight = "";
   double screenHeight, screenWidth;
   File _image;
   String pathAsset = 'assets/images/camera.png';
-  int _radioValue = 0;
-  String category = "Paper";
+  String category;
+  Completer<GoogleMapController> _controller = Completer();
+  Position _currentPosition;
+  CameraPosition _userpos;
+  double latitude, longitude;
+  String _homeloc = "searching...";
+  Set<Marker> markers = Set();
+  CameraPosition _home;
+  MarkerId markerId1 = MarkerId("12");
+  GoogleMapController gmcontroller;
+
+  @override
+  void initState() {
+    super.initState();
+    _getLocation();
+  }
 
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Recycle Item'),
-      ),
-      body: Container(
-          child: Padding(
-              padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                        onTap: () => {_onPictureSelection()},
-                        child: Container(
-                          height: screenHeight / 3.2,
-                          width: screenWidth / 1.8,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: _image == null
-                                  ? AssetImage(pathAsset)
-                                  : FileImage(_image),
-                              fit: BoxFit.cover,
-                            ),
-                            border: Border.all(
-                              width: 3.0,
-                              color: Colors.grey,
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                    5.0) //         <--- border radius here
-                                ),
-                          ),
-                        )),
-                    SizedBox(height: 5),
-                    Text("Click image to take item picture",
-                        style: TextStyle(fontSize: 10.0, color: Colors.black)),
-                    SizedBox(height: 5),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+    //var getLocation = _getLocation();
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Add Recycle Item'),
+          ),
+          body: Container(
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
-                        Text("Paper"),
-                        new Radio(
-                          value: 0,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
+                        GestureDetector(
+                            onTap: () => {_onPictureSelection()},
+                            child: Container(
+                              height: screenHeight / 3.2,
+                              width: screenWidth / 1.8,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: _image == null
+                                      ? AssetImage(pathAsset)
+                                      : FileImage(_image),
+                                  fit: BoxFit.cover,
+                                ),
+                                border: Border.all(
+                                  width: 3.0,
+                                  color: Colors.grey,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                        5.0) //         <--- border radius here
+                                    ),
+                              ),
+                            )),
+                        SizedBox(height: 5),
+                        Text("Click image to take item picture",
+                            style: TextStyle(fontSize: 10.0, color: Colors.black)),
+                        SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Text("Category: ", style: TextStyle(fontSize: 20),),
+                            SizedBox(width: 15),
+                            DropdownButton(
+                              hint: Text(categoryFilterController.text),
+                              icon: Icon(Icons.arrow_drop_down),
+                              items: [
+                                DropdownMenuItem(
+                                  child: Text("Paper"),
+                                  value:"Paper",
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("Metal"),
+                                  value:"Metal",
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("Plastic"),
+                                  value:"Plastic",
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("Glass"),
+                                  value:"Glass",
+                                )
+                              ],
+                              onChanged: (value){
+                                setState(() {
+                                  categoryFilterController.text = value;
+                                  category = value;
+                                });
+                              },
+                            ),
+                          ],
                         ),
-                        Text("Metal"),
-                        new Radio(
-                          value: 1,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
+                        TextField(
+                            controller: _itemnamecontroller,
+                            keyboardType: TextInputType.name,
+                            decoration: InputDecoration(
+                                labelText: 'Item Name',
+                                icon: Icon(Icons.title_outlined))),
+                        TextField(
+                            controller: _itemweightcontroller,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'Weight', icon: Icon(Icons.line_weight_outlined))),
+                        SizedBox(
+                          height: 5,
                         ),
-                        Text("Plastic"),
-                        new Radio(
-                          value: 2,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
-                        ),
-                        Text("Glass"),
-                        new Radio(
-                          value: 3,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
-                        ),
-                      ],
-                    ),
-                    TextField(
-                        controller: _itemnamecontroller,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                            labelText: 'Item Name',
-                            icon: Icon(Icons.title_outlined))),
-                    TextField(
-                        controller: _itemweightcontroller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                            labelText: 'Weight', icon: Icon(Icons.line_weight_outlined))),
+                        GestureDetector(
+                            onTap: () => {_loadmap()},
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Address",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold)),
+                        )),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Icon(Icons.location_searching),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Flexible(child: Text(_homeloc),) 
+                        ],
+                      ),
           
                     SizedBox(height: 50),
                     MaterialButton(
@@ -127,37 +175,15 @@ class _AddItemPageState extends State<AddItemPage> {
               ))),
     );
   }
-  void _handleRadioValueChange(int value) {
-    setState(() {
-      _radioValue = value;
-
-      switch (_radioValue) {
-        case 0:
-          category = "Paper";
-          break;
-        case 1:
-          category = "Metal";
-          break;
-        case 0:
-          category = "Plastic";
-          break;
-        case 1:
-          category = "Glass";
-          break;
-      }
-    });
-  }
 
   _onPictureSelection() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            //backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             content: new Container(
-              //color: Colors.white,
               height: screenHeight / 6,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -236,34 +262,7 @@ class _AddItemPageState extends State<AddItemPage> {
     // ignore: deprecated_member_use
     _image = await ImagePicker.pickImage(
         source: ImageSource.gallery, maxHeight: 400);
-    //_cropImage();
     setState(() {});
-  }
-
-  Future<Null> _cropImage() async {
-    File croppedFile = await ImageCropper.cropImage(
-        sourcePath: _image.path,
-        aspectRatioPresets: Platform.isAndroid
-            ? [
-                CropAspectRatioPreset.square,
-              ]
-            : [
-                CropAspectRatioPreset.square,
-              ],
-        androidUiSettings: AndroidUiSettings(
-            toolbarTitle: 'Resize',
-            toolbarColor: Colors.deepOrange,
-            toolbarWidgetColor: Colors.white,
-            initAspectRatio: CropAspectRatioPreset.square,
-            lockAspectRatio: false),
-        iosUiSettings: IOSUiSettings(
-          title: 'Cropper',
-        ));
-    if (croppedFile != null) {
-      _image = croppedFile;
-      setState(() {
-      });
-    }
   }
 
   void newItemDialog() {
@@ -300,7 +299,6 @@ class _AddItemPageState extends State<AddItemPage> {
             ),
           ),
           actions: <Widget>[
-            // usually buttons at the bottom of the dialog
             new FlatButton(
               child: new Text(
                 "Yes",
@@ -331,7 +329,6 @@ class _AddItemPageState extends State<AddItemPage> {
   }
 
   void _onAddItem() {
-    //final dateTime = DateTime.now();
     _itemname = _itemnamecontroller.text;
     _itemweight = _itemweightcontroller.text;
     
@@ -343,8 +340,6 @@ class _AddItemPageState extends State<AddItemPage> {
       "itemweight": _itemweight,
       "category": category,
       "encoded_string": base64Image,
-      //"image": widget.item.itemid,
-      //"itemid": widget.item.itemid,
     }).then((res) {
       print(res.body);
       if (res.body == "success") {
@@ -368,6 +363,177 @@ class _AddItemPageState extends State<AddItemPage> {
     });
   }
 
-  
+  _loadmap() {
+    _controller = null;
+    try {
+      if (_currentPosition.latitude == null) {
+        Toast.show("Current location not available. Please wait...", context,
+            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        _getLocation(); //_getCurrentLocation();
+        return;
+      }
+      _controller = Completer();
+      _userpos = CameraPosition(
+        target: LatLng(latitude, longitude),
+        zoom: 16,
+      );
+      showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, newSetState) {
+              var alheight = MediaQuery.of(context).size.height;
+              var alwidth = MediaQuery.of(context).size.width;
+              return AlertDialog(
+                  //scrollable: true,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  title: Center(
+                    child: Text("Select New Delivery Location",
+                        style: TextStyle(color: Colors.black, fontSize: 14)),
+                  ),
+                  //titlePadding: EdgeInsets.all(5),
+                  //content: Text(_homeloc),
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          _homeloc,
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        ),
+                        Container(
+                          height: alheight - 300,
+                          width: alwidth - 10,
+                          child: GoogleMap(
+                              mapType: MapType.normal,
+                              initialCameraPosition: _userpos,
+                              markers: markers.toSet(),
+                              onMapCreated: (controller) {
+                                _controller.complete(controller);
+                              },
+                              onTap: (newLatLng) {
+                                _loadLoc(newLatLng, newSetState);
+                              }),
+                        ),
+                        MaterialButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                          //minWidth: 200,
+                          height: 30,
+                          child: Text('Close'),
+                          color: Colors.red,
+                          textColor: Colors.white,
+                          elevation: 10,
+                          onPressed: () => {
+                            markers.clear(),
+                            Navigator.of(context).pop(false),
+                          },
+                        ),
+                      ],
+                    ),
+                  ));
+            },
+          );
+        },
+      );
+    } catch (e) {
+      print(e);
+      return;
+    }
+  }
 
+  Future<void> _getLocation() async {
+    try {
+      final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+      geolocator
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+          .then((Position position) async {
+        _currentPosition = position;
+        if (_currentPosition != null) {
+          final coordinates = new Coordinates(
+              _currentPosition.latitude, _currentPosition.longitude);
+          var addresses =
+              await Geocoder.local.findAddressesFromCoordinates(coordinates);
+          setState(() {
+            var first = addresses.first;
+            _homeloc = first.addressLine;
+            if (_homeloc != null) {
+              latitude = _currentPosition.latitude;
+              longitude = _currentPosition.longitude;
+              return;
+            }
+          });
+        }
+      }).catchError((e) {
+        print(e);
+      });
+    } catch (exception) {
+      print(exception.toString());
+    }
+  }
+
+  void _loadLoc(LatLng loc, newSetState) async {
+    newSetState(() {
+      print("insetstate");
+      markers.clear();
+      latitude = loc.latitude;
+      longitude = loc.longitude;
+      _getLocationfromlatlng(latitude, longitude, newSetState);
+      _home = CameraPosition(
+        target: loc,
+        zoom: 16,
+      );
+      markers.add(Marker(
+        markerId: markerId1,
+        position: LatLng(latitude, longitude),
+        infoWindow: InfoWindow(
+          title: 'New Location',
+          snippet: 'New Delivery Location',
+        ),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+      ));
+    });
+    _userpos = CameraPosition(
+      target: LatLng(latitude, longitude),
+      zoom: 14.4746,
+    );
+    _newhomeLocation();
+  }
+
+  _getLocationfromlatlng(double lat, double lng, newSetState) async {
+    final Geolocator geolocator = Geolocator()
+      ..placemarkFromCoordinates(lat, lng);
+    _currentPosition = await geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    //debugPrint('location: ${_currentPosition.latitude}');
+    final coordinates = new Coordinates(lat, lng);
+    var addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses.first;
+    newSetState(() {
+      _homeloc = first.addressLine;
+      if (_homeloc != null) {
+        latitude = lat;
+        longitude = lng;
+        //_calculatePayment();
+        return;
+      }
+    });
+    setState(() {
+      _homeloc = first.addressLine;
+      if (_homeloc != null) {
+        latitude = lat;
+        longitude = lng;
+        //_calculatePayment();
+        return;
+      }
+    });
+  }
+
+  Future<void> _newhomeLocation() async {
+    gmcontroller = await _controller.future;
+    gmcontroller.animateCamera(CameraUpdate.newCameraPosition(_home));
+  }
 }

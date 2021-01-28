@@ -134,7 +134,17 @@ class _DetailInterfaceState extends State<DetailInterface> {
                 TableRow(children: [
                   Text("Location : ",
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("")
+                  Text(widget.item.location),
+                ]),
+                TableRow(children: [
+                  Text("Owner : ",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(widget.user.name),
+                ]),
+                TableRow(children: [
+                  Text("Phone : ",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(widget.user.phone),
                 ]),
               ]),
               SizedBox(
@@ -155,7 +165,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
                   },
                 ),
               ),*/
-              SizedBox(height: 150),
+              SizedBox(height: 100),
               Container(
                 alignment: Alignment.center,
                 width: 350,

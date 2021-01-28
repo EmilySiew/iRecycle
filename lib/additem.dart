@@ -132,7 +132,7 @@ class _AddItemPageState extends State<AddItemPage> {
                             controller: _itemweightcontroller,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
-                                labelText: 'Weight', icon: Icon(Icons.line_weight_outlined))),
+                                labelText: 'Weight (kg)', icon: Icon(Icons.line_weight_outlined))),
                         SizedBox(
                           height: 5,
                         ),
@@ -340,6 +340,7 @@ class _AddItemPageState extends State<AddItemPage> {
       "itemweight": _itemweight,
       "category": category,
       "encoded_string": base64Image,
+      "location": _homeloc,
     }).then((res) {
       print(res.body);
       if (res.body == "success") {

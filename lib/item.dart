@@ -6,7 +6,8 @@ class Item {
       image,
       date,
       itemowner,
-      itemworker;
+      itemworker,
+      location;
       
   Item(
       {this.itemid,
@@ -16,5 +17,6 @@ class Item {
       this.image,
       this.date,
       this.itemowner,
-      this.itemworker});
+      this.itemworker,
+      this.location});
 }

@@ -209,7 +209,8 @@ class _MetalPageState extends State<MetalPage> {
       image: itemlist[index]['image'],
       date: itemlist[index]['date'],
       itemowner: itemlist[index]['itemowner'],
-      itemworker: itemlist[index][null]);
+      itemworker: itemlist[index][null],
+      location: itemlist[index]['location']);
 
     Navigator.push(
         context,

@@ -7,8 +7,9 @@ import 'package:recycle/user.dart';
 
 class SideBarLayout extends StatelessWidget {
   final User user;
+  const SideBarLayout({Key key, @required this.user}) : super(key: key);
 
-  SideBarLayout({@required this.user});
+  //SideBarLayout({@required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class SideBarLayout extends StatelessWidget {
                 return navigationState as Widget;
               },
             ),
-            SideBar(),
+            SideBar(user: user),
           ],
         ),
       ),

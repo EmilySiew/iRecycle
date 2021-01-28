@@ -7,8 +7,13 @@ import 'package:rxdart/rxdart.dart';
 
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
+import '../user.dart';
 
 class SideBar extends StatefulWidget {
+  final User user;
+  const SideBar({Key key, @required this.user}) : super(key: key);
+
+
   @override
   _SideBarState createState() => _SideBarState();
 }
@@ -77,11 +82,11 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ),
                       ListTile(
                         title: Text(
-                          "Emily Siew",
+                          widget.user.name,
                           style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          "emilysiew98@gmail.com",
+                          widget.user.email,
                           style: TextStyle(
                             color: Colors.teal[100],
                             fontSize: 18,

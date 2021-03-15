@@ -108,8 +108,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         endIndent: 32,
                       ),
                       MenuItem(
-                        icon: Icons.home,
-                        title: "HomePage",
+                        icon: Icons.dashboard,
+                        title: "Dashboard",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);

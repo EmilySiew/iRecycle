@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../pages/collecteditem.dart';
 import '../pages/recycleitem.dart';
 import 'package:recycle/user.dart';
-
 import '../pages/homepage.dart';
 
 enum NavigationEvents {

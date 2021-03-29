@@ -6,6 +6,7 @@ import 'package:recycle/loginpage.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../bloc.navigation_bloc/navigation_bloc.dart';
+import '../profile.dart';
 import '../sidebar/menu_item.dart';
 import '../user.dart';
 
@@ -93,12 +94,28 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           ),
                         ),
                         leading: CircleAvatar(
+                          backgroundColor: Color(0xffE6E6E6),
+                          child:
+                        GestureDetector(
                           child: Icon(
-                            Icons.perm_identity,
+                            Icons.person,
+                            color: Color(0xffCCCCCC),
                             //color: Colors.white,
                           ),
-                          radius: 40,
+                          onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => ProfilePage(
+                              //item: item,
+                              user: widget.user,
+                            )));
+                //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPaperClickedEvent);
+              }
+                          
                         ),
+                        radius: 40,
+                      ),
                       ),
                       Divider(
                         height: 60,

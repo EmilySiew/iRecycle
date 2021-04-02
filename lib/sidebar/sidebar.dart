@@ -103,13 +103,13 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                             //color: Colors.white,
                           ),
                           onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => ProfilePage(
-                              //item: item,
-                              user: widget.user,
-                            )));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => ProfilePage(
+                                //item: item,
+                                user: widget.user,
+                                )));
                 //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPaperClickedEvent);
               }
                           

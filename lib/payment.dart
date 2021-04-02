@@ -1,4 +1,4 @@
-/*import 'dart:async';
+import 'dart:async';
 import 'package:recycle/user.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
@@ -81,4 +81,4 @@ class _PaymentScreenState extends State<PaymentScreen> {
     });
     return Future.value(false);
   }
-}*/
+}

@@ -75,10 +75,13 @@ class _ProfileState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.black));
-    return MaterialApp(
+        return SafeArea(child: Scaffold(appBar: AppBar(centerTitle: true,
+        title: Text('PROFILE PAGE', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),),
+        backgroundColor: Colors.teal[200],),
+    /*return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomPadding: false,*/
           body: ListView.builder(
               //Step 6: Count the data
               itemCount: 5,
@@ -95,7 +98,7 @@ class _ProfileState extends State<ProfilePage> {
                                         color: Colors.white)),
                               ),*/
                               SizedBox(
-                                height: 40,
+                                height: 20,
                               ),
                               GestureDetector(
                                 //onTap: _takePicture,
@@ -131,6 +134,14 @@ class _ProfileState extends State<ProfilePage> {
                               ),
                               Container(height: 10),
                               Container(
+                                child: Text(
+                                  "Credit : ",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14),
+                                ),
+                              ),
+                              /*Container(
                                 width: 350,
                                 height: 200,
                                 child: Card(
@@ -216,11 +227,11 @@ class _ProfileState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                              ),
+                              ),*/
                               SizedBox(
                                 height: 25,
                               ),
-                              Container(
+                              /*Container(
                                 color: Colors.grey,
                                 child: Center(
                                   child: Text("My Profile ",
@@ -229,7 +240,7 @@ class _ProfileState extends State<ProfilePage> {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                   
@@ -238,23 +249,23 @@ class _ProfileState extends State<ProfilePage> {
 
                 if (index == 1) {
                   return Padding(
-                    padding: EdgeInsets.all(2.0),
+                    padding: EdgeInsets.all(15.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Container(
                           width: 450,
-                          height: 50,
+                          height: 60,
                           decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                           child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.edit, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("NAME",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:280),
+                            Icon(Icons.edit_outlined, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Name",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:237),
                             new Container(
                              child: GestureDetector(
                             onTap: _changeName,
@@ -264,20 +275,20 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        SizedBox(height: 2.0),
+                        SizedBox(height: 12.0),
                         Container(
                           width: 450,
-                          height: 50,
+                          height: 60,
                           decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                           child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.edit, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("PASSWORD",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:242),
+                            Icon(Icons.edit_outlined, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Password",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:210),
                             new Container(
                              child: GestureDetector(
                             onTap: _changePassword,
@@ -286,20 +297,20 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        SizedBox(height: 2.0),
+                        SizedBox(height: 12.0),
                         Container(
                           width: 450,
-                          height: 50,
+                          height: 60,
                           decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                           child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.edit, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("PHONE",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:272),
+                            Icon(Icons.edit_outlined, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Phone",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:232),
                             new Container(
                              child: GestureDetector(
                             onTap: _changePhone,
@@ -308,7 +319,7 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        SizedBox(height: 2.0),
+                        //SizedBox(height: 2.0),
                         /*Container(
                           width: 450,
                           height: 50,
@@ -330,20 +341,20 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),*/
-                        SizedBox(height: 2.0),
+                        SizedBox(height: 12.0),
                         Container(
                           width: 450,
-                          height: 50,
+                          height: 60,
                           decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                           child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.add, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("CREDIT",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:270),
+                            Icon(Icons.add_outlined, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Credit",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:235),
                             new Container(
                              child: GestureDetector(
                             onTap: _loadPayment,
@@ -352,20 +363,20 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        SizedBox(height: 2.0),
+                        SizedBox(height: 12.0),
                         Container(
                           width: 450,
-                          height: 50,
+                          height: 60,
                           decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                           child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.person_add, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("REGISTER",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:255),
+                            Icon(Icons.person_add_outlined, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Register",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:220),
                             new Container(
                              child: GestureDetector(
                             onTap: _registerAccount,
@@ -374,20 +385,20 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        SizedBox(height: 2.0),
+                        SizedBox(height: 12.0),
                         Container(
                           width: 450,
-                          height: 50,
+                          height: 60,
                           decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                           child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.lock_outline, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("LOG IN",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:275),
+                            Icon(Icons.lock_outline, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Log In",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:235),
                             new Container(
                              child: GestureDetector(
                             onTap: _gotologinPage,
@@ -396,21 +407,20 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        SizedBox(height: 2.0),
+                        SizedBox(height: 12.0),
                         Container(
                             width: 450,
-                            height: 50,
+                            height: 60,
                             decoration: BoxDecoration(
-                                border: Border(
-                                    bottom:
-                                        BorderSide(color: Colors.green[100]))),
+                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                              color: Colors.blueGrey[50]),
                             child: new Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(width:20),
-                            Icon(Icons.lock_open, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("LOG OUT",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:260),
+                            Icon(Icons.lock_open, color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Log Out",style: TextStyle(fontSize: 15.0,)),
+                            SizedBox(width:222),
                             new Container(
                              child: GestureDetector(
                             onTap: _gotologout,

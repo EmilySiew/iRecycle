@@ -24,14 +24,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Scaffold(
             appBar: AppBar(
               title: Text('PAYMENT'),
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.teal[200],
             ),
             body: Column(
               children: <Widget>[
                 Expanded(
                   child: WebView(
                     initialUrl:
-                        'http://itschizo.com/emily_siew/myETrash/php/payment.php?email=' +
+                        'https://techvestigate.com/irecycle/php/payment.php?email=' +
                             widget.user.email +
                             '&mobile=' +
                             widget.user.phone +
@@ -54,7 +54,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Future<bool> _onBackPressAppBar() async {
     print("onbackpress payment");
     String urlgetuser =
-        "http://itschizo.com/emily_siew/myETrash/php/get_user.php";
+        "https://techvestigate.com/irecycle/php/getuser.php";
 
     http.post(urlgetuser, body: {
       "email": widget.user.email,
@@ -69,12 +69,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
             email: dres[2],
             phone: dres[3],
             //radius: dres[4],
-            //credit: dres[5],
+            credit: dres[4]);
             //rating: dres[6]);
-        /*Navigator.push(
+        Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => MainScreen(user: updateuser))*/);
+                builder: (context) => MainScreen(user: updateuser)));
       }
     }).catchError((err) {
       print(err);

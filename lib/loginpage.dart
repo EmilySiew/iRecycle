@@ -142,7 +142,8 @@ class _LoginPageState extends State<LoginPage> {
             name: userdata[1],
             password: _password,
             phone: userdata[2],
-            date: userdata[3]);
+            date: userdata[3],
+            credit: userdata[4]);
         print('hi ' + user.email);
         Navigator.push(
             context,

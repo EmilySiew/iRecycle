@@ -1,6 +1,7 @@
 import 'dart:convert';
 //import 'dart:html';
 import 'dart:math';
+import 'dart:io';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,15 @@ import 'package:toast/toast.dart';
 import 'package:recycle/constants.dart';
 import 'package:recycle/widgets/profile_list_item.dart';
 
-String urlgetuser = "0"; //"http://itschizo.com/emily_siew/myETrash/php/get_user.php";
-String urluploadImage = "0";
-    //"http://itschizo.com/emily_siew/myETrash/php/upload_imageprofile.php";
-String urlupdate = '0';
-    //"http://itschizo.com/emily_siew/myETrash/php/update_profile.php";
-//File _image;
+String urlgetuser = "https://techvestigate.com/irecycle/php/getuser.php";
+String urluploadImage =
+    "https://techvestigate.com/irecycle/php/upload_imageprofile.php";
+String urlupdate =
+    "https://techvestigate.com/irecycle/php/update_profile.php";
+File _image;
 int number = 0;
 String _value;
+String pathAsset = 'assets/images/profile.png';
 
 
 
@@ -101,7 +103,7 @@ class _ProfileState extends State<ProfilePage> {
                                 height: 20,
                               ),
                               GestureDetector(
-                                //onTap: _takePicture,
+                                onTap: _takePicture,
                                 child: Container(
                                     width: 150.0,
                                     height: 150.0,
@@ -111,8 +113,11 @@ class _ProfileState extends State<ProfilePage> {
                                             color: Colors.white, width: 5.0),
                                         image: new DecorationImage(
                                             fit: BoxFit.cover,
-                                            image: new NetworkImage(
-                                                "http://itschizo.com/emily_siew/myETrash/profile/${widget.user.email}.jpg")))),
+                                            image: _image == null 
+                                            ? AssetImage(pathAsset)
+                                            : new NetworkImage("https://techvestigate.com/irecycle/images/Profile/${widget.user.email}.jpg")))),
+                                            //image: new NetworkImage(
+                                                //"https://techvestigate.com/irecycle/image/Profile/${widget.user.email}.jpg")))),
                               ),
                               SizedBox(height: 5),
                               Container(
@@ -135,112 +140,17 @@ class _ProfileState extends State<ProfilePage> {
                               Container(height: 10),
                               Container(
                                 child: Text(
-                                  "Credit : ",
+                                  widget.user.credit,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14),
                                 ),
                               ),
-                              /*Container(
-                                width: 350,
-                                height: 200,
-                                child: Card(
-                                  color: Colors.white70,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    side: BorderSide(color: Colors.grey),
-                                  ),
-                                  elevation: 20,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(5.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Row(
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.phone_android,
-                                            ),
-                                            SizedBox(width: 10),
-                                            Text(widget.user.phone ??
-                                                'not registered'),
-                                          ],
-                                        ),
-                                        Row(
-                                          //mainAxisAlignment: MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.rate_review,
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            /*RatingBar(
-                                              itemCount: 5,
-                                              itemSize: 12,
-                                              initialRating: double.parse(widget
-                                                      .user.rating
-                                                      .toString() ??
-                                                  0.0),
-                                              itemPadding: EdgeInsets.symmetric(
-                                                  horizontal: 2.0),
-                                              itemBuilder: (context, _) => Icon(
-                                                Icons.star,
-                                                color: Colors.amber,
-                                              ),
-                                            ),*/
-                                          ],
-                                        ),
-                                        /*Row(
-                                          //mainAxisAlignment: MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.credit_card,
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Flexible(
-                                              child: Text("You have " +
-                                                      widget.user.credit +
-                                                      " Credit" ??
-                                                  "You have 0 Credit"),
-                                            ),
-                                          ],
-                                        ),*/
-                                        Row(
-                                          //mainAxisAlignment: MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.location_on,
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Flexible(
-                                              child: Text(_currentAddress),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),*/
+                              
                               SizedBox(
                                 height: 25,
                               ),
-                              /*Container(
-                                color: Colors.grey,
-                                child: Center(
-                                  child: Text("My Profile ",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                ),
-                              ),*/
+                              
                             ],
                           ),
                   
@@ -319,28 +229,7 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ],)
                         ),
-                        //SizedBox(height: 2.0),
-                        /*Container(
-                          width: 450,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.green[100]))),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(width:20),
-                            Icon(Icons.edit, color: Colors.green[900]),
-                            SizedBox(width: 10),
-                            Text("RADIUS",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:270),
-                            new Container(
-                             child: GestureDetector(
-                            onTap: _changeRadius,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
-                            )
-                          ],)
-                        ),*/
+                      
                         SizedBox(height: 12.0),
                         Container(
                           width: 450,
@@ -437,12 +326,7 @@ class _ProfileState extends State<ProfilePage> {
 
   }
 
-  /*void _takePicture() async {
-    if (widget.user.name == "not register") {
-      Toast.show("Not allowed", context,
-          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-      return;
-    }
+  void _takePicture() async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -486,7 +370,7 @@ class _ProfileState extends State<ProfilePage> {
         );
       },
     );
-  }*/
+  }
 
   _getCurrentLocation() async {
     geolocator

@@ -268,7 +268,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
       List dres = string.split(",");
       print(dres);
       if (dres[0] == "success") {
-        User user = new User(name: dres[1], email: dres[2], phone: dres[3]);
+        User user = new User(name: dres[1], email: dres[2], phone: dres[3], credit: dres[4]);
         Navigator.push(ctx,
             MaterialPageRoute(builder: (context) => MainScreen(user: user)));
       }

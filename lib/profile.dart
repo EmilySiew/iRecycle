@@ -3,17 +3,11 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:io';
 
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:progress_dialog/progress_dialog.dart';
-import 'package:recycle/additem.dart';
-import 'package:recycle/item.dart';
 import 'package:recycle/loginpage.dart';
 import 'package:recycle/payment.dart';
 import 'package:recycle/registrationscreen.dart';
@@ -23,22 +17,16 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
-import 'package:recycle/constants.dart';
-import 'package:recycle/widgets/profile_list_item.dart';
-
 String urlgetuser = "https://techvestigate.com/irecycle/php/getuser.php";
 String urluploadImage =
     "https://techvestigate.com/irecycle/php/upload_imageprofile.php";
 String urlupdate =
     "https://techvestigate.com/irecycle/php/update_profile.php";
-File _image;
+File _image ;
 int number = 0;
 String _value;
 String pathAsset = 'assets/images/profile.png';
 
-
-
-//import '../bloc.navigation_bloc/navigation_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
   final User user;
@@ -92,13 +80,6 @@ class _ProfileState extends State<ProfilePage> {
                   return Container(
                     child: Column(
                             children: <Widget>[
-                              /*Center(
-                                child: Text("MyETrash",
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ),*/
                               SizedBox(
                                 height: 20,
                               ),
@@ -116,8 +97,6 @@ class _ProfileState extends State<ProfilePage> {
                                             image: _image == null 
                                             ? AssetImage(pathAsset)
                                             : new NetworkImage("https://techvestigate.com/irecycle/images/Profile/${widget.user.email}.jpg")))),
-                                            //image: new NetworkImage(
-                                                //"https://techvestigate.com/irecycle/image/Profile/${widget.user.email}.jpg")))),
                               ),
                               SizedBox(height: 5),
                               Container(
@@ -139,11 +118,11 @@ class _ProfileState extends State<ProfilePage> {
                               ),
                               Container(height: 10),
                               Container(
-                                child: Text(
-                                  widget.user.credit,
+                                child: Text('   Credit : '+
+                                  widget.user.credit+'   ',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14),
+                                      fontSize: 18, backgroundColor: Colors.blueGrey[100]),
                                 ),
                               ),
                               

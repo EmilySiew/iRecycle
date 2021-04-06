@@ -63,6 +63,19 @@ class _AddItemPageState extends State<AddItemPage> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        Text("** 5 Credits are required for each post **",
+                            style: TextStyle(fontSize: 15.0, color: Colors.redAccent, fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10),
+                        Container(
+                                child: Text('   Available Credit : '+
+                                  widget.user.credit+'   ',
+                                  style: TextStyle(
+                                     backgroundColor: Colors.blueGrey[100],
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
+                              SizedBox(height: 10),
                         GestureDetector(
                             onTap: () => {_onPictureSelection()},
                             child: Container(
@@ -157,7 +170,7 @@ class _AddItemPageState extends State<AddItemPage> {
                         ],
                       ),
           
-                    SizedBox(height: 50),
+                    SizedBox(height: 20),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
@@ -341,6 +354,7 @@ class _AddItemPageState extends State<AddItemPage> {
       "category": category,
       "encoded_string": base64Image,
       "location": _homeloc,
+      "credit": widget.user.credit,
     }).then((res) {
       print(res.body);
       if (res.body == "success") {

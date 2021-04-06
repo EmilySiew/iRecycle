@@ -220,7 +220,7 @@ class _RecycleItemState extends State<RecycleItemPage> {
   }
 
   Future<String> deleteItem(String itemid) async {
-    String urlLoadItems = "https://techvestigate.com/irecycle/php/cancelitem.php";
+    String urlLoadItems = "https://techvestigate.com/irecycle/php/deleteitem.php";
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Deleting Item");

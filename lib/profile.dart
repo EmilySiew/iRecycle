@@ -20,13 +20,11 @@ import 'package:toast/toast.dart';
 String urlgetuser = "https://techvestigate.com/irecycle/php/getuser.php";
 String urluploadImage =
     "https://techvestigate.com/irecycle/php/upload_imageprofile.php";
-String urlupdate =
-    "https://techvestigate.com/irecycle/php/update_profile.php";
-File _image ;
+String urlupdate = "https://techvestigate.com/irecycle/php/update_profile.php";
+File _image;
 int number = 0;
 String _value;
 String pathAsset = 'assets/images/profile.png';
-
 
 class ProfilePage extends StatefulWidget {
   final User user;
@@ -34,9 +32,6 @@ class ProfilePage extends StatefulWidget {
 
   @override
   _ProfileState createState() => _ProfileState();
-  
-
-  
 }
 
 class _ProfileState extends State<ProfilePage> {
@@ -51,258 +46,291 @@ class _ProfileState extends State<ProfilePage> {
   Position _currentPosition;
   String _currentAddress = "Searching current location...";
 
-  
-
   @override
   void initState() {
     super.initState();
     _getCurrentLocation();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.black));
-        return SafeArea(child: Scaffold(appBar: AppBar(centerTitle: true,
-        title: Text('PROFILE PAGE', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),),
-        backgroundColor: Colors.teal[200],),
-    /*return MaterialApp(
+    return SafeArea(
+        child: Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'MY PROFILE',
+          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+        ),
+        backgroundColor: Colors.teal[200],
+      ),
+      /*return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           resizeToAvoidBottomPadding: false,*/
-          body: ListView.builder(
-              //Step 6: Count the data
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return Container(
-                    child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: 20,
-                              ),
-                              GestureDetector(
-                                onTap: _takePicture,
-                                child: Container(
-                                    width: 150.0,
-                                    height: 150.0,
-                                    decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                            color: Colors.white, width: 5.0),
-                                        image: new DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: _image == null 
-                                            ? AssetImage(pathAsset)
-                                            : new NetworkImage("https://techvestigate.com/irecycle/images/Profile/${widget.user.email}.jpg")))),
-                              ),
-                              SizedBox(height: 5),
-                              Container(
-                                child: Text(
-                                  widget.user.name?.toUpperCase() ??
-                                      'Not register',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
-                              ),
-                              Container(
-                                child: Text(
-                                  widget.user.email,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14),
-                                ),
-                              ),
-                              Container(height: 10),
-                              Container(
-                                child: Text('   Credit : '+
-                                  widget.user.credit+'   ',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18, backgroundColor: Colors.blueGrey[100]),
-                                ),
-                              ),
-                              
-                              SizedBox(
-                                height: 25,
-                              ),
-                              
-                            ],
-                          ),
-                  
-                  );
-                }
+      body: ListView.builder(
+          //Step 6: Count the data
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return Container(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: _takePicture,
+                      child: Container(
+                          width: 150.0,
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                              shape: BoxShape.circle,
+                              border:
+                                  Border.all(color: Colors.black, width: 2.0),
+                              image: new DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: _image != null
+                                      ? AssetImage(pathAsset)
+                                      : new NetworkImage(
+                                          "https://techvestigate.com/irecycle/images/Profile/${widget.user.email}.jpg")))),
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      child: Text(
+                        widget.user.name?.toUpperCase() ?? 'Not register',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        widget.user.email,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 14),
+                      ),
+                    ),
+                    Container(height: 10),
+                    Container(
+                      child: Text(
+                        '   Credit : ' + widget.user.credit + '   ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            backgroundColor: Colors.blueGrey[100]),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                  ],
+                ),
+              );
+            }
 
-                if (index == 1) {
-                  return Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 450,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+            if (index == 1) {
+              return Padding(
+                padding: EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
+                            SizedBox(width: 20),
                             Icon(Icons.edit_outlined, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Name",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:237),
+                            Text("Name",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 237),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _changeName,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
-
+                              child: GestureDetector(
+                                onTap: _changeName,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)
-                        ),
-                        SizedBox(height: 12.0),
-                        Container(
-                          width: 450,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+                          ],
+                        )),
+                    SizedBox(height: 12.0),
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
+                            SizedBox(width: 20),
                             Icon(Icons.edit_outlined, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Password",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:210),
+                            Text("Password",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 210),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _changePassword,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
+                              child: GestureDetector(
+                                onTap: _changePassword,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)
-                        ),
-                        SizedBox(height: 12.0),
-                        Container(
-                          width: 450,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+                          ],
+                        )),
+                    SizedBox(height: 12.0),
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
+                            SizedBox(width: 20),
                             Icon(Icons.edit_outlined, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Phone",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:232),
+                            Text("Phone",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 232),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _changePhone,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
+                              child: GestureDetector(
+                                onTap: _changePhone,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)
-                        ),
-                      
-                        SizedBox(height: 12.0),
-                        Container(
-                          width: 450,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+                          ],
+                        )),
+                    SizedBox(height: 12.0),
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
+                            SizedBox(width: 20),
                             Icon(Icons.add_outlined, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Credit",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:235),
+                            Text("Credit",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 235),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _loadPayment,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
+                              child: GestureDetector(
+                                onTap: _loadPayment,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)
-                        ),
-                        SizedBox(height: 12.0),
-                        Container(
-                          width: 450,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+                          ],
+                        )),
+                    SizedBox(height: 12.0),
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
-                            Icon(Icons.person_add_outlined, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Register",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:220),
+                            Icon(Icons.person_add_outlined,
+                                color: Colors.teal[300]),
+                            SizedBox(width: 20),
+                            Text("Register",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 220),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _registerAccount,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
+                              child: GestureDetector(
+                                onTap: _registerAccount,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)
-                        ),
-                        SizedBox(height: 12.0),
-                        Container(
-                          width: 450,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                          child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+                          ],
+                        )),
+                    SizedBox(height: 12.0),
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
+                            SizedBox(width: 20),
                             Icon(Icons.lock_outline, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Log In",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:235),
+                            Text("Log In",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 235),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _gotologinPage,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
+                              child: GestureDetector(
+                                onTap: _gotologinPage,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)
-                        ),
-                        SizedBox(height: 12.0),
-                        Container(
-                            width: 450,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                              color: Colors.blueGrey[50]),
-                            child: new Row(mainAxisAlignment: MainAxisAlignment.start,
+                          ],
+                        )),
+                    SizedBox(height: 12.0),
+                    Container(
+                        width: 450,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            color: Colors.blueGrey[50]),
+                        child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(width:20),
+                            SizedBox(width: 20),
                             Icon(Icons.lock_open, color: Colors.teal[300]),
                             SizedBox(width: 20),
-                            Text("Log Out",style: TextStyle(fontSize: 15.0,)),
-                            SizedBox(width:222),
+                            Text("Log Out",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                )),
+                            SizedBox(width: 222),
                             new Container(
-                             child: GestureDetector(
-                            onTap: _gotologout,
-                            child: Icon(Icons.arrow_forward_ios),
-                             ),
+                              child: GestureDetector(
+                                onTap: _gotologout,
+                                child: Icon(Icons.arrow_forward_ios),
+                              ),
                             )
-                          ],)),
-                      ],
-                    ),
-                  );
-                }
-              }),
-        ));
-
+                          ],
+                        )),
+                  ],
+                ),
+              );
+            }
+          }),
+    ));
   }
 
   void _takePicture() async {
@@ -381,7 +409,6 @@ class _ProfileState extends State<ProfilePage> {
       print(e);
     }
   }
-
 
   void _logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -672,7 +699,8 @@ class _ProfileState extends State<ProfilePage> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Are you sure you want to log out? " + widget.user.name),
+          title:
+              new Text("Are you sure you want to log out? " + widget.user.name),
           //content: new Text("Are your sure?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
@@ -684,8 +712,8 @@ class _ProfileState extends State<ProfilePage> {
                 await prefs.setString('email', '');
                 await prefs.setString('pass', '');
                 print("LOGOUT");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MyApp()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyApp()));
               },
             ),
             new FlatButton(
@@ -793,8 +821,4 @@ class _DropdownExampleState extends State<DropdownExample> {
       ),
     );
   }
-    
-
-
-
 }

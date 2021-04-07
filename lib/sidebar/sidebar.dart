@@ -75,7 +75,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: Colors.teal[900],
+                  color: Colors.blueGrey,
                   child: Column(
                     children: <Widget>[
                       SizedBox(
@@ -89,7 +89,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         subtitle: Text(
                           widget.user.email,
                           style: TextStyle(
-                            color: Colors.teal[100],
+                            color: Colors.blueGrey[100],
                             fontSize: 18,
                           ),
                         ),
@@ -97,17 +97,27 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           backgroundColor: Color(0xffE6E6E6),
                           child:
                         GestureDetector(
-                          child: Icon(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            decoration: new BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: Colors.blueGrey[700]),
+                                        image: new DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: new NetworkImage("https://techvestigate.com/irecycle/images/Profile/${widget.user.email}.jpg")))
+
+                          ),
+                          /*child: Icon(
                             Icons.person,
                             color: Color(0xffCCCCCC),
-                            //color: Colors.white,
-                          ),
+                          ),*/
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (BuildContext context) => ProfilePage(
-                                //item: item,
                                 user: widget.user,
                                 )));
                 //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPaperClickedEvent);
@@ -148,10 +158,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
                         },
                       ),
-                      /*MenuItem(
-                        icon: Icons.card_giftcard,
-                        title: "Wishlist",
-                      ),*/
                       SizedBox(height: 180),
                       Divider(
                         height: 64,
@@ -160,10 +166,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         indent: 32,
                         endIndent: 32,
                       ),
-                      /*MenuItem(
-                        icon: Icons.settings,
-                        title: "Settings",
-                      ),*/
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
@@ -178,7 +180,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                 ),
               ),
               Align(
-                alignment: Alignment(0, -0.9),
+                alignment: Alignment(0, -0.95),
                 child: GestureDetector(
                   onTap: () {
                     onIconPressed();
@@ -187,14 +189,14 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                     clipper: CustomMenuClipper(),
                     child: Container(
                       width: 35,
-                      height: 110,
-                      color: Colors.teal[900],
+                      height: 90,
+                      color: Colors.blueGrey,
                       alignment: Alignment.centerLeft,
                       child: AnimatedIcon(
                         progress: _animationController.view,
                         icon: AnimatedIcons.menu_close,
                         color: Colors.white,
-                        size: 25,
+                        size: 23,
                       ),
                     ),
                   ),

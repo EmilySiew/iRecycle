@@ -35,37 +35,59 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: new Container(
-        decoration: BoxDecoration(
-            /*image: DecorationImage(
-              image: AssetImage('assets/images/background.jpg'),
-              fit: BoxFit.cover),*/
-            ),
-        padding: EdgeInsets.all(30.0),
+        padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              'assets/images/logo.png',
-              scale: 2.5,
-            ),
+            /*Image.asset(
+              'assets/images/login.png',
+              //scale: 2.5,
+            ),*/
+            Container(
+                child: Text('Welcome Back',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30))),
+            SizedBox(height: 10.0),
+            Container(
+                child: Text('Sign in with your email and password',
+                    style: TextStyle(fontSize: 15))),
+            SizedBox(height: 60),
             TextField(
                 controller: _emcontroller,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.lightGreenAccent[50],
                     labelText: 'Email',
-                    icon: Icon(Icons.email))),
-            SizedBox(height: 10.0),
+                    hintText: 'example@gmail.com',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        gapPadding: 10),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: BorderSide(color: Colors.teal),
+                        gapPadding: 10),
+                    icon: Icon(Icons.email_outlined))),
+            SizedBox(height: 30.0),
             TextField(
               controller: _pscontroller,
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.lightGreenAccent[50],
                   labelText: 'Password',
-                  icon: Icon(Icons.lock)),
+                  hintText: 'Enter your password',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25), gapPadding: 10),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: BorderSide(color: Colors.teal),
+                      gapPadding: 10),
+                  icon: Icon(Icons.lock_outline)),
               obscureText: true,
             ),
+            SizedBox(height: 20.0),
             Row(
               children: <Widget>[
                 Checkbox(
@@ -74,40 +96,43 @@ class _LoginPageState extends State<LoginPage> {
                     _onChange(value);
                   },
                 ),
-                Text('Remember Me', style: TextStyle(fontSize: 16))
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
-              minWidth: 300,
-              height: 50,
-              child: Text('Login'),
-              color: Colors.teal[800],
-              textColor: Colors.white,
-              elevation: 20,
-              onPressed: _onLogin,
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            Row(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: _onRegister,
-                  child: Text('Register New Account',
-                      style: TextStyle(fontSize: 16, color: Colors.blue)),
-                ),
+                Text('Remember Me', style: TextStyle(fontSize: 16)),
                 Spacer(),
                 GestureDetector(
                   onTap: _onForgot,
                   child: Text(
                     'Forgot Password',
-                    style: TextStyle(fontSize: 16, color: Colors.blue),
+                    style: TextStyle(
+                        fontSize: 16, decoration: TextDecoration.underline),
                   ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              minWidth: 350,
+              height: 50,
+              child: Text('Continue'),
+              color: Colors.teal,
+              textColor: Colors.white,
+              elevation: 20,
+              onPressed: _onLogin,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("Don't have an account? ", style: TextStyle(fontSize: 16)),
+                GestureDetector(
+                  onTap: _onRegister,
+                  child: Text('Sign Up',
+                      style: TextStyle(fontSize: 16, color: Colors.teal)),
                 ),
               ],
             )

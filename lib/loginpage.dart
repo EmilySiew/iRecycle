@@ -40,18 +40,18 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             /*Image.asset(
-              'assets/images/login.png',
-              //scale: 2.5,
+              'assets/images/login.gif',
+              scale: 1.2,
             ),*/
             Container(
                 child: Text('Welcome Back',
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30))),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 35, color: Colors.teal[900]))),
             SizedBox(height: 10.0),
             Container(
                 child: Text('Sign in with your email and password',
                     style: TextStyle(fontSize: 15))),
-            SizedBox(height: 60),
+            SizedBox(height: 50),
             TextField(
                 controller: _emcontroller,
                 keyboardType: TextInputType.emailAddress,

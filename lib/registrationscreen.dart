@@ -27,7 +27,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registration'),
+        centerTitle: true,
+        title: Text('Sign Up'),
       ),
       body: Container(
           child: Padding(
@@ -35,30 +36,90 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Image.asset(
+                    SizedBox(height: 30),
+                    Container(
+                child: Text('Register Account',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.teal[900]))),
+            SizedBox(height: 10.0),
+            Container(
+                child: Text('Please complete your details',
+                    style: TextStyle(fontSize: 15))),
+            SizedBox(height: 50),
+                    /*Image.asset(
                       'assets/images/logo.png',
                       scale: 2,
-                    ),
+                    ),*/
                     TextField(
                         controller: _namecontroller,
                         keyboardType: TextInputType.name,
                         decoration: InputDecoration(
-                            labelText: 'Name', icon: Icon(Icons.person))),
+                            labelText: 'Name',
+                            hintText: 'Enter your name',
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 15),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide(color: Colors.teal),
+                                gapPadding: 10),
+                            icon: Icon(Icons.person_outline))),
+                            SizedBox(height: 25),
                     TextField(
                         controller: _emcontroller,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                            labelText: 'Email', icon: Icon(Icons.email))),
+                            labelText: 'Email', 
+                            hintText: 'Enter your email',
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 15),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide(color: Colors.teal),
+                                gapPadding: 10),
+                                icon: Icon(Icons.email_outlined))),
+                                SizedBox(height: 25),
                     TextField(
                         controller: _phcontroller,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
-                            labelText: 'Mobile', icon: Icon(Icons.phone))),
+                            labelText: 'Mobile', 
+                            hintText: 'Enter your phone number',
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 15),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide(color: Colors.teal),
+                                gapPadding: 10),
+                                icon: Icon(Icons.phone_outlined))),
+                                SizedBox(height: 25),
                     TextField(
                       controller: _pscontroller,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        icon: Icon(Icons.lock),
+                        hintText: 'Enter your password',
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 15),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide(color: Colors.teal),
+                                gapPadding: 10),
+                        icon: Icon(Icons.lock_outline),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _passwordVisible
@@ -75,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       obscureText: _passwordVisible,
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Row(
                       children: <Widget>[
                         Checkbox(
@@ -91,10 +152,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
-                      minWidth: 300,
+                      minWidth: 350,
                       height: 50,
-                      child: Text('Register'),
-                      color: Colors.teal[900],
+                      child: Text('Continue'),
+                      color: Colors.teal,
                       textColor: Colors.white,
                       elevation: 15,
                       onPressed: _onRegister,
@@ -103,7 +164,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     GestureDetector(
                         onTap: _onLogin,
                         child: Text('Already register',
-                            style: TextStyle(fontSize: 16, color: Colors.teal))),
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.teal))),
                   ],
                 ),
               ))),
@@ -116,25 +178,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _password = _pscontroller.text;
     _phone = _phcontroller.text;
     if (validateEmail(_email) && validatePassword(_password)) {
-       Toast.show(
-          "Check your email/password",
-          context,
-          duration: Toast.LENGTH_LONG,
-          gravity: Toast.TOP,
-        );
+      Toast.show(
+        "Check your email/password",
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.TOP,
+      );
       return;
     }
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Registration...");
     await pr.show();
-    http.post("https://techvestigate.com/irecycle/php/register.php",
-        body: {
-          "name": _name,
-          "email": _email,
-          "phone": _phone,
-          "password": _password,
-        }).then((res) {
+    http.post("https://techvestigate.com/irecycle/php/register.php", body: {
+      "name": _name,
+      "email": _email,
+      "phone": _phone,
+      "password": _password,
+    }).then((res) {
       print(res.body);
       if (res.body == "Registration successful") {
         Toast.show(
@@ -146,7 +207,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (_rememberMe) {
           savepref();
         }
-       _onLogin();
+        _onLogin();
       } else {
         Toast.show(
           "Registration failed",
@@ -183,14 +244,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool validateEmail(String value) {
     Pattern pattern =
-         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
     return (!regex.hasMatch(value)) ? false : true;
   }
 
-  bool validatePassword(String value){
-        String  pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
-        RegExp regExp = new RegExp(pattern);
-        return regExp.hasMatch(value);
+  bool validatePassword(String value) {
+    String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
   }
 }

@@ -136,8 +136,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       obscureText: _passwordVisible,
                     ),
-                    SizedBox(height: 15),
-                    Row(
+                    SizedBox(height: 20),
+                    /*Row(
                       children: <Widget>[
                         Checkbox(
                           value: _rememberMe,
@@ -147,8 +147,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         Text('Remember Me', style: TextStyle(fontSize: 16))
                       ],
-                    ),
-                    SizedBox(height: 10),
+                    ),*/
+                    SizedBox(height: 30),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),

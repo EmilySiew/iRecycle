@@ -112,18 +112,25 @@ class _ProfileState extends State<ProfilePage> {
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                     ),
-                    Container(height: 10),
+                    Container(height: 20),
                     Container(
+                      height: 40,
+                      width: 160,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.blueGrey[100],
+                      ),
                       child: Text(
                         '   Credit : ' + widget.user.credit + '   ',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            backgroundColor: Colors.blueGrey[100]),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 20,
                     ),
                   ],
                 ),

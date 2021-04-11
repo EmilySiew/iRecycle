@@ -122,8 +122,10 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                             )
                                           ),
                                           Expanded(
+                                            child: SingleChildScrollView(
                                             child: Container(
                                               child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 mainAxisSize:MainAxisSize.min,
                                                 children: <Widget>[
                                                   
@@ -150,11 +152,14 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                                         color: Colors.black54),
                                                   ),
                                                   Text("Location : " + itemlist[index]['location']),
-                                                  Text("Owner : "+itemlist[index]['itemowner'], 
+                                                  Text("Owner : "+itemlist[index]['ownername'], 
+                                                  style: TextStyle(color: Colors.black45),),
+                                                  Text("Contact No : "+itemlist[index]['phone'], 
                                                   style: TextStyle(color: Colors.black45),),
 
                                                 ]
                                               ))
+                                            )
                                     ),
                                     
                                     /*Text(

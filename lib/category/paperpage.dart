@@ -217,6 +217,8 @@ class _PaperPageState extends State<PaperPage>{
         date: itemlist[index]['date'],
         itemowner: itemlist[index]['itemowner'],
         itemworker: itemlist[index][null],
+        ownername: itemlist[index]['ownername'],
+        phone: itemlist[index]['phone'],
         location: itemlist[index]['location']);
         
 

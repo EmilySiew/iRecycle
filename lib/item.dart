@@ -7,6 +7,8 @@ class Item {
       date,
       itemowner,
       itemworker,
+      ownername,
+      phone,
       location;
       
   Item(
@@ -18,5 +20,7 @@ class Item {
       this.date,
       this.itemowner,
       this.itemworker,
+      this.ownername,
+      this.phone,
       this.location});
 }

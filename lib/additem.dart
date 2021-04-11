@@ -385,6 +385,8 @@ class _AddItemPageState extends State<AddItemPage> {
       "itemweight": _itemweight,
       "category": category,
       "encoded_string": base64Image,
+      "ownername": widget.user.name,
+      "phone": widget.user.phone,
       "location": _homeloc,
       "credit": widget.user.credit,
     }).then((res) {

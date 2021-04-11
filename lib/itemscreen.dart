@@ -140,12 +140,12 @@ class _DetailInterfaceState extends State<DetailInterface> {
                 TableRow(children: [
                   Text("Owner                 : ",
                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
-                  Text(widget.user.name, style: TextStyle(fontSize: 18)),
+                  Text(widget.item.ownername, style: TextStyle(fontSize: 18)),
                 ]),
                 TableRow(children: [
                   Text("Phone                 : ",
                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
-                  Text(widget.user.phone, style: TextStyle(fontSize: 18)),
+                  Text(widget.item.phone, style: TextStyle(fontSize: 18)),
                 ]),
               ]),
               SizedBox(

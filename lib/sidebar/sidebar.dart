@@ -152,7 +152,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ),
                       MenuItem(
                         icon: Icons.replay_circle_filled,
-                        title: "Recycle Item",
+                        title: "Recycle Bin",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);

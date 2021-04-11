@@ -15,7 +15,8 @@ import 'package:geolocator/geolocator.dart';
 class AddItemPage extends StatefulWidget {
   final User user;
   final Item item;
-  const AddItemPage({Key key, @required this.user, @required this.item}) : super(key: key);
+  const AddItemPage({Key key, @required this.user, @required this.item})
+      : super(key: key);
 
   @override
   _AddItemPageState createState() => _AddItemPageState();
@@ -24,8 +25,9 @@ class AddItemPage extends StatefulWidget {
 class _AddItemPageState extends State<AddItemPage> {
   final TextEditingController _itemnamecontroller = TextEditingController();
   final TextEditingController _itemweightcontroller = TextEditingController();
-  final TextEditingController categoryFilterController = TextEditingController();
-  
+  final TextEditingController categoryFilterController =
+      TextEditingController();
+
   String _itemname = "";
   String _itemweight = "";
   double screenHeight, screenWidth;
@@ -53,130 +55,161 @@ class _AddItemPageState extends State<AddItemPage> {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     //var getLocation = _getLocation();
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Add Recycle Item'),
-          ),
-          body: Container(
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Text("** 5 Credits are required for each post **",
-                            style: TextStyle(fontSize: 15.0, color: Colors.redAccent, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 10),
-                        Container(
-                                child: Text('   Available Credit : '+
-                                  widget.user.credit+'   ',
-                                  style: TextStyle(
-                                     backgroundColor: Colors.blueGrey[100],
-                                      //fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                        GestureDetector(
-                            onTap: () => {_onPictureSelection()},
-                            child: Container(
-                              height: screenHeight / 3.2,
-                              width: screenWidth / 1.8,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: _image == null
-                                      ? AssetImage(pathAsset)
-                                      : FileImage(_image),
-                                  fit: BoxFit.cover,
-                                ),
-                                border: Border.all(
-                                  width: 3.0,
-                                  color: Colors.grey,
-                                ),
-                                borderRadius: BorderRadius.all(Radius.circular(
-                                        5.0) //         <--- border radius here
-                                    ),
-                              ),
-                            )),
-                        SizedBox(height: 5),
-                        Text("Click image to take item picture",
-                            style: TextStyle(fontSize: 10.0, color: Colors.black)),
-                        SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Text("Category: ", style: TextStyle(fontSize: 20),),
-                            SizedBox(width: 15),
-                            DropdownButton(
-                              hint: Text(categoryFilterController.text),
-                              icon: Icon(Icons.arrow_drop_down),
-                              items: [
-                                DropdownMenuItem(
-                                  child: Text("Paper"),
-                                  value:"Paper",
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Metal"),
-                                  value:"Metal",
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Plastic"),
-                                  value:"Plastic",
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Glass"),
-                                  value:"Glass",
-                                )
-                              ],
-                              onChanged: (value){
-                                setState(() {
-                                  categoryFilterController.text = value;
-                                  category = value;
-                                });
-                              },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Add Recycle Item'),
+      ),
+      body: Container(
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("** 5 Credits are required for each post **",
+                        style: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Container(
+                      child: Text(
+                        '   Available Credit : ' + widget.user.credit + '   ',
+                        style: TextStyle(
+                            backgroundColor: Colors.blueGrey[100],
+                            //fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                        onTap: () => {_onPictureSelection()},
+                        child: Container(
+                          height: screenHeight / 3.2,
+                          width: screenWidth / 1.8,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: _image == null
+                                  ? AssetImage(pathAsset)
+                                  : FileImage(_image),
+                              fit: BoxFit.cover,
                             ),
+                            border: Border.all(
+                              width: 3.0,
+                              color: Colors.grey,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                    5.0) //         <--- border radius here
+                                ),
+                          ),
+                        )),
+                    SizedBox(height: 5),
+                    Text("Click image to take item picture",
+                        style: TextStyle(fontSize: 10.0, color: Colors.black)),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          "Category: ",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        SizedBox(width: 15),
+                        DropdownButton(
+                          hint: Text(categoryFilterController.text),
+                          icon: Icon(Icons.arrow_drop_down),
+                          items: [
+                            DropdownMenuItem(
+                              child: Text("Paper"),
+                              value: "Paper",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("Metal"),
+                              value: "Metal",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("Plastic"),
+                              value: "Plastic",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("Glass"),
+                              value: "Glass",
+                            )
                           ],
+                          onChanged: (value) {
+                            setState(() {
+                              categoryFilterController.text = value;
+                              category = value;
+                            });
+                          },
                         ),
-                        TextField(
-                            controller: _itemnamecontroller,
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                                labelText: 'Item Name',
-                                icon: Icon(Icons.title_outlined))),
-                        TextField(
-                            controller: _itemweightcontroller,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                labelText: 'Weight (kg)', icon: Icon(Icons.line_weight_outlined))),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        GestureDetector(
-                            onTap: () => {_loadmap()},
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                        controller: _itemnamecontroller,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                            labelText: 'Name',
+                            hintText: 'Enter item name',
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 15),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide(color: Colors.teal),
+                                gapPadding: 10),
+                            icon: Icon(Icons.title_outlined))),
+                            SizedBox(height: 20),
+                    TextField(
+                        controller: _itemweightcontroller,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'Weight (kg)',
+                            hintText: 'Enter item weight (kg)',
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 15),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide(color: Colors.teal),
+                                gapPadding: 10),
+                            icon: Icon(Icons.line_weight_outlined))),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    GestureDetector(
+                        onTap: () => {_loadmap()},
                         child: Container(
                           alignment: Alignment.topLeft,
                           child: Text("Address",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold)),
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         )),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Icon(Icons.location_searching),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Flexible(child: Text(_homeloc),) 
-                        ],
-                      ),
-          
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.location_searching),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                          child: Text(_homeloc),
+                        )
+                      ],
+                    ),
                     SizedBox(height: 20),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
                       minWidth: 300,
                       height: 50,
-                      child: Text('Add Recycle Item'),
+                      child: Text('Continue'),
                       color: Colors.teal,
                       textColor: Colors.white,
                       elevation: 15,
@@ -227,7 +260,7 @@ class _AddItemPageState extends State<AddItemPage> {
                               color: Colors.black,
                             )),
                         //color: Color.fromRGBO(101, 255, 218, 50),
-                        color:Colors.teal[200],
+                        color: Colors.teal[200],
                         textColor: Colors.black,
                         elevation: 10,
                         onPressed: () =>
@@ -245,7 +278,7 @@ class _AddItemPageState extends State<AddItemPage> {
                               color: Colors.black,
                             )),
                         //color: Color.fromRGBO(101, 255, 218, 50),
-                        color:Colors.teal[200],
+                        color: Colors.teal[200],
                         textColor: Colors.black,
                         elevation: 10,
                         onPressed: () => {
@@ -267,10 +300,9 @@ class _AddItemPageState extends State<AddItemPage> {
     _image = await ImagePicker.pickImage(
         source: ImageSource.camera, maxHeight: 800, maxWidth: 800);
     //_cropImage();
-    setState(() {
-    });
+    setState(() {});
   }
-  
+
   void _chooseGallery() async {
     // ignore: deprecated_member_use
     _image = await ImagePicker.pickImage(
@@ -344,7 +376,7 @@ class _AddItemPageState extends State<AddItemPage> {
   void _onAddItem() {
     _itemname = _itemnamecontroller.text;
     _itemweight = _itemweightcontroller.text;
-    
+
     String base64Image = base64Encode(_image.readAsBytesSync());
 
     http.post("https://techvestigate.com/irecycle/php/additem.php", body: {

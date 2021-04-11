@@ -30,6 +30,7 @@ class _ItemScreenState extends State<ItemScreen> {
       child: Scaffold(
           resizeToAvoidBottomPadding: false,
           appBar: AppBar(
+            centerTitle: true,
             title: Text('ITEM DETAILS'),
             backgroundColor: Colors.teal[100],
           ),
@@ -105,7 +106,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
         ),
         Text(widget.item.itemname.toUpperCase(),
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
             )),
         Text(widget.item.date),
@@ -118,63 +119,50 @@ class _DetailInterfaceState extends State<DetailInterface> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 5,
+                height: 30,
               ),
               Table(children: [
                 TableRow(children: [
-                  Text("Item Category : ",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(widget.item.category),
+                  Text("Item Category   : ",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text(widget.item.category, style: TextStyle(fontSize: 18),)
                 ]),
                 TableRow(children: [
-                  Text("Item Weight : ",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(widget.item.weight + "kg"),
+                  Text("Item Weight       : ",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text(widget.item.weight + "kg", style: TextStyle(fontSize: 18)),
                 ]),
                 TableRow(children: [
-                  Text("Location : ",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(widget.item.location),
+                  Text("Location             : ",
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                  Text(widget.item.location, style: TextStyle(fontSize: 15)),
                 ]),
                 TableRow(children: [
-                  Text("Owner : ",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(widget.user.name),
+                  Text("Owner                 : ",
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                  Text(widget.user.name, style: TextStyle(fontSize: 18)),
                 ]),
                 TableRow(children: [
-                  Text("Phone : ",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(widget.user.phone),
+                  Text("Phone                 : ",
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                  Text(widget.user.phone, style: TextStyle(fontSize: 18)),
                 ]),
               ]),
               SizedBox(
                 height: 10,
               ),
-              /*Container(
-                
-                height: 120,
-                width: 340,
-                child: GoogleMap(
-                  // 2
-                  initialCameraPosition: _myLocation,
-                  // 3
-                  mapType: MapType.normal,
-                  // 4
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                ),
-              ),*/
-              SizedBox(height: 100),
+              SizedBox(height: 50),
               Container(
                 alignment: Alignment.center,
                 width: 350,
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
+                      
                   height: 50,
+                  
                   child: Text(
-                    'COLLECT ITEM',
+                    '  COLLECT ITEM  ',
                     style: TextStyle(fontSize: 16),
                   ),
                   color: Colors.teal,

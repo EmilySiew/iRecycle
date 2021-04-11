@@ -32,19 +32,21 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Recycle Category', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
+        title: Text('Recycle Category',
+            style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
         backgroundColor: Colors.teal[200],
       ),
       body: GridView(
-        padding: EdgeInsets.only(left: 10, right: 10, bottom: 30, top: 80),
+        padding: EdgeInsets.only(left: 15, right: 5, bottom: 30, top: 100),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 20,
+          crossAxisSpacing: 5,
+          mainAxisSpacing: 5,
         ),
         children: <Widget>[
           GestureDetector(
               child: Container(
-                child: Image.asset('assets/images/paper.PNG'),
+                child: Image.asset('assets/images/paper.gif'),
               ),
               onTap: () {
                 Navigator.push(
@@ -56,9 +58,10 @@ class _HomePageState extends State<HomePage> {
                             )));
                 //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyPaperClickedEvent);
               }),
+              //Container(child: Text('Paper'),),
           GestureDetector(
               child: Container(
-                child: Image.asset('assets/images/metal.PNG'),
+                child: Image.asset('assets/images/metal.gif'),
               ),
               onTap: () {
                 Navigator.push(
@@ -72,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               }),
           GestureDetector(
               child: Container(
-                child: Image.asset('assets/images/plastic.PNG'),
+                child: Image.asset('assets/images/plastic.gif'),
               ),
               onTap: () {
                 Navigator.push(
@@ -86,7 +89,7 @@ class _HomePageState extends State<HomePage> {
               }),
           GestureDetector(
               child: Container(
-                child: Image.asset('assets/images/glass.PNG'),
+                child: Image.asset('assets/images/glass.gif'),
               ),
               onTap: () {
                 Navigator.push(

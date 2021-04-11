@@ -176,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                 builder: (BuildContext context) => MainScreen(user: user)));
       } else {
         Toast.show(
-          "Login failed",
+          "Failed. Please enter correct email & password",
           context,
           duration: Toast.LENGTH_LONG,
           gravity: Toast.TOP,

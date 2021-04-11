@@ -136,19 +136,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       obscureText: _passwordVisible,
                     ),
-                    SizedBox(height: 20),
-                    /*Row(
-                      children: <Widget>[
-                        Checkbox(
-                          value: _rememberMe,
-                          onChanged: (bool value) {
-                            _onChange(value);
-                          },
-                        ),
-                        Text('Remember Me', style: TextStyle(fontSize: 16))
-                      ],
-                    ),*/
-                    SizedBox(height: 30),
+                    SizedBox(height: 50),
+                    
+                    
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
@@ -227,11 +217,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
   }
 
-  void _onChange(bool value) {
+  /*void _onChange(bool value) {
     setState(() {
       _rememberMe = value;
     });
-  }
+  }*/
 
   void savepref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

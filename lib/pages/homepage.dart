@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recycle/category/itempage.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:recycle/user.dart';
 import 'package:recycle/category/paperpage.dart';
@@ -15,13 +16,27 @@ class HomePage extends StatefulWidget with NavigationStates {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   GlobalKey<RefreshIndicatorState> refreshKey;
 
   List itemList;
   double screenHeight, screenWidth;
-  String titlecenter = "Loading Category...";
+  String titlecenter = "Loading Items";
   bool visible = false;
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 5, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +45,36 @@ class _HomePageState extends State<HomePage> {
     //TextEditingController _itemnamecontroller = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Recycle Category',
-            style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
-        backgroundColor: Colors.teal[200],
-      ),
-      body: GridView(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Categories',
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
+          backgroundColor: Colors.teal[200],
+          bottom: TabBar(
+            unselectedLabelColor: Colors.black,
+            indicator: BoxDecoration(
+                color: Colors.blueGrey[100],
+                
+                borderRadius: BorderRadius.circular(50)),
+            controller: _tabController,
+            tabs: <Widget>[
+              Tab(text: 'All'),
+              Tab(text: 'Paper'),
+              Tab(text: 'Metal'),
+              Tab(text: 'Plastic'),
+              Tab(text: 'Glass'),
+            ],
+          ),
+        ),
+        body: TabBarView(controller: _tabController, children: [
+          ItemPage(user: widget.user),
+          PaperPage(user: widget.user),
+          MetalPage(user: widget.user),
+          PlasticPage(user: widget.user),
+          GlassPage(user: widget.user),
+        ])
+
+        /*body: GridView(
         padding: EdgeInsets.only(left: 15, right: 5, bottom: 30, top: 100),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -102,7 +140,10 @@ class _HomePageState extends State<HomePage> {
                 //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyGlassClickedEvent);
               }),
         ],
-      ),
-    );
+      ),*/
+        //   ],
+        // )
+
+        );
   }
 }

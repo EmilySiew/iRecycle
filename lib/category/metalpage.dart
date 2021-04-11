@@ -40,11 +40,11 @@ class _MetalPageState extends State<MetalPage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           centerTitle: true,
           title: Text('Category : Metal', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
-        ),
+        ),*/
         body: Column(children: [
           itemlist == null
               ? Flexible(
@@ -108,8 +108,8 @@ class _MetalPageState extends State<MetalPage> {
                                         width: 150,
                                         decoration: BoxDecoration(
                                             shape: BoxShape.rectangle,
-                                            border: Border.all(
-                                                color: Colors.black, width: 1),
+                                            /*border: Border.all(
+                                                color: Colors.black, width: 1),*/
                                             image: DecorationImage(
                                                 fit: BoxFit.fill,
                                                 image: NetworkImage(
@@ -125,14 +125,14 @@ class _MetalPageState extends State<MetalPage> {
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.indigo[900]),
+                                                color: Colors.black),
                                           ),
                                           Text(
                                             "Category : " +
                                                 itemlist[index]['category'],
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                color: Colors.indigo[800]),
+                                                color: Colors.black87),
                                           ),
                                           Text(
                                             "Weight : " +
@@ -140,9 +140,10 @@ class _MetalPageState extends State<MetalPage> {
                                                 "kg",
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                color: Colors.indigo[700]),
+                                                color: Colors.black54),
                                           ),
-                                          Text(itemlist[index]['date']),
+                                          Text(itemlist[index]['date'],
+                                          style: TextStyle(color: Colors.black45),),
                                         ]))),
 
                                     /*Text(

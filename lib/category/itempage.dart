@@ -10,15 +10,15 @@ import 'package:recycle/additem.dart';
 import 'package:recycle/item.dart';
 import 'package:recycle/itemscreen.dart';
 
-class PlasticPage extends StatefulWidget {
+class ItemPage extends StatefulWidget {
   final User user;
-  const PlasticPage({Key key, this.user}):super(key:key);
+  const ItemPage({Key key, this.user}) : super(key: key);
 
   @override
-  _PlasticPageState createState() => _PlasticPageState();
+  _ItemPageState createState() => _ItemPageState();
 }
 
-class _PlasticPageState extends State<PlasticPage>{
+class _ItemPageState extends State<ItemPage> {
   GlobalKey<RefreshIndicatorState> refreshKey;
 
   List itemlist;
@@ -29,10 +29,9 @@ class _PlasticPageState extends State<PlasticPage>{
   @override
   void initState() {
     super.initState();
-    _loadPlastic();
+    _loadItem();
   }
 
-  
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
@@ -43,8 +42,7 @@ class _PlasticPageState extends State<PlasticPage>{
       child: Scaffold(
         /*appBar: AppBar(
           centerTitle: true,
-          title: Text('Category : Plastic',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
+          title: Text('Category : Glass', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
           backgroundColor: Colors.teal[200],
         ),*/
         body: Column(children: [
@@ -64,7 +62,7 @@ class _PlasticPageState extends State<PlasticPage>{
                   key: refreshKey,
                   color: Colors.deepOrange,
                   onRefresh: () async {
-                    _loadPlastic();
+                    _loadItem();
                   },
                   child: GridView.count(
                   crossAxisCount: 1,
@@ -73,24 +71,25 @@ class _PlasticPageState extends State<PlasticPage>{
                     return Padding(
                         padding: EdgeInsets.all(1),
                         child: Card(
-                          shape: Border(
-                          right: BorderSide(color: Colors.green[200], width:5),
-                          bottom: BorderSide(color: Colors.green[200], width: 1)
-                        ),
+                            shape: Border(
+                                right: BorderSide(
+                                    color: Colors.green[200], width: 5),
+                                bottom: BorderSide(
+                                    color: Colors.green[200], width: 1)),
                             color: Colors.grey[200],
                             child: InkWell(
                               onTap: () => _loadItemDetail(index),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                              //child: SingleChildScrollView(
+                                //child: SingleChildScrollView(
                                 child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   //children: [
-                                    //SizedBox(height: 3),
-                                    //Stack(
-                                      children: <Widget>[
-                                        Container(
-                                          /*height: 150,
+                                  //SizedBox(height: 3),
+                                  //Stack(
+                                  children: <Widget>[
+                                    Container(
+                                        /*height: 150,
                                             width: 150,
                                             child: CachedNetworkImage(
                                               imageUrl:
@@ -105,54 +104,48 @@ class _PlasticPageState extends State<PlasticPage>{
                                                 size: screenWidth / 2,
                                               ),
                                             )*/
-                                          height:150,
-                                          width:150,
-                                          decoration: BoxDecoration(
+                                        height: 150,
+                                        width: 150,
+                                        decoration: BoxDecoration(
                                             shape: BoxShape.rectangle,
-                                            //border: Border.all(color: Colors.black,width: 1),
+                                            /*border: Border.all(
+                                                color: Colors.black, width: 1),*/
                                             image: DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: NetworkImage(
-                                                "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
-                                              )
-                                            )
-                                            )
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: Column(
-                                                mainAxisSize:MainAxisSize.min,
+                                                fit: BoxFit.fill,
+                                                image: NetworkImage(
+                                                  "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
+                                                )))),
+                                    Expanded(
+                                        child: Container(
+                                            child: Column(
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: <Widget>[
-                                                  
-                                                  Text(
-                                                    itemlist[index]['itemname'],
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.black),
-                                                  ),
-                                                  Text(
-                                                    "Category : " +
-                                                    itemlist[index]['category'],
-                                                    style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.black87),
-                                                  ),
-                                                  Text(
-                                                    "Weight : " +
-                                                        itemlist[index]['weight'] +
-                                                        "kg",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.black54),
-                                                  ),
-                                                  Text(itemlist[index]['date'],
-                                                  style: TextStyle(color: Colors.black45),),
+                                          Text(
+                                            itemlist[index]['itemname'],
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            "Category : " +
+                                                itemlist[index]['category'],
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black87),
+                                          ),
+                                          Text(
+                                            "Weight : " +
+                                                itemlist[index]['weight'] +
+                                                "kg",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black54),
+                                          ),
+                                          Text(itemlist[index]['date'],
+                                          style: TextStyle(color: Colors.black45),),
+                                        ]))),
 
-                                                ]
-                                              ))
-                                    ),
-                                    
                                     /*Text(
                                       itemlist[index]['itemname'],
                                       style: TextStyle(
@@ -180,7 +173,7 @@ class _PlasticPageState extends State<PlasticPage>{
     );
   }
 
-  Future<void> _loadPlastic() async {
+  Future<void> _loadItem() async {
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Loading...");
@@ -197,7 +190,7 @@ class _PlasticPageState extends State<PlasticPage>{
         setState(() {
           var jsondata = json.decode(res.body);
           itemlist = jsondata["item"];
-          itemlist.removeWhere((element) => element['category'] != "Plastic");
+          //itemlist.removeWhere((element) => element['category'] != "Glass");
         });
       }
     }).catchError((err) {
@@ -206,8 +199,10 @@ class _PlasticPageState extends State<PlasticPage>{
     await pr.hide();
   }
 
+
   _loadItemDetail(int index) {
     print(itemlist[index]['itemname']);
+  
     Item item = new Item(
         itemid: itemlist[index]['itemid'],
         category: itemlist[index]['category'],
@@ -218,7 +213,7 @@ class _PlasticPageState extends State<PlasticPage>{
         itemowner: itemlist[index]['itemowner'],
         itemworker: itemlist[index][null],
         location: itemlist[index]['location']);
-        
+
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -227,9 +222,4 @@ class _PlasticPageState extends State<PlasticPage>{
                   user: widget.user,
                 )));
   }
-
-
-
-
-
 }

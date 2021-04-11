@@ -89,12 +89,12 @@ class _DetailInterfaceState extends State<DetailInterface> {
       children: <Widget>[
         Center(),
         Container(
-          decoration: BoxDecoration(
+          /*decoration: BoxDecoration(
             border: Border.all(
               color: Colors.black,
               width: 2.0,
             ),
-          ),
+          ),*/
           width: 280,
           height: 200,
           child: Image.network(

@@ -101,8 +101,8 @@ class _RecycleItemState extends State<RecycleItemPage> {
                                         width: 150,
                                         decoration: BoxDecoration(
                                             shape: BoxShape.rectangle,
-                                            border: Border.all(
-                                                color: Colors.black, width: 1),
+                                            /*border: Border.all(
+                                                color: Colors.black, width: 1),*/
                                             image: DecorationImage(
                                                 fit: BoxFit.fill,
                                                 image: NetworkImage(
@@ -118,14 +118,14 @@ class _RecycleItemState extends State<RecycleItemPage> {
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.indigo[900]),
+                                                color: Colors.black),
                                           ),
                                           Text(
                                             "Category : " +
                                                 itemlist[index]['category'],
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                color: Colors.indigo[800]),
+                                                color: Colors.black87),
                                           ),
                                           Text(
                                             "Weight : " +
@@ -133,9 +133,10 @@ class _RecycleItemState extends State<RecycleItemPage> {
                                                 "kg",
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                color: Colors.indigo[700]),
+                                                color: Colors.black54),
                                           ),
-                                          Text(itemlist[index]['date']),
+                                          Text(itemlist[index]['date'],
+                                          style: TextStyle(color: Colors.black45),),
                                         ]))),
                                   ],
                                 ),

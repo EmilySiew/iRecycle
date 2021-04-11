@@ -112,7 +112,7 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                           width:150,
                                           decoration: BoxDecoration(
                                             shape: BoxShape.rectangle,
-                                            border: Border.all(color: Colors.black,width: 1),
+                                            //border: Border.all(color: Colors.black,width: 1),
                                             image: DecorationImage(
                                               fit: BoxFit.fill,
                                               image: NetworkImage(
@@ -132,14 +132,14 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                                     style: TextStyle(
                                                       fontSize: 20,
                                                       fontWeight: FontWeight.bold,
-                                                      color: Colors.indigo[900]),
+                                                      color: Colors.black),
                                                   ),
                                                   Text(
                                                     "Category : " +
                                                     itemlist[index]['category'],
                                                     style: TextStyle(
                                                       fontSize: 15,
-                                                      color: Colors.indigo[800]),
+                                                      color: Colors.black87),
                                                   ),
                                                   Text(
                                                     "Weight : " +
@@ -147,9 +147,11 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                                         "kg",
                                                     style: TextStyle(
                                                         fontSize: 15,
-                                                        color: Colors.indigo[700]),
+                                                        color: Colors.black54),
                                                   ),
-                                                  Text(itemlist[index]['date']),
+                                                  Text("Location : " + itemlist[index]['location']),
+                                                  Text("Owner : "+itemlist[index]['itemowner'], 
+                                                  style: TextStyle(color: Colors.black45),),
 
                                                 ]
                                               ))

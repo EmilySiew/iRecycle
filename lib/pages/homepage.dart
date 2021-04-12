@@ -7,6 +7,7 @@ import 'package:recycle/category/metalpage.dart';
 import 'package:recycle/category/plasticpage.dart';
 import 'package:recycle/category/glasspage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class HomePage extends StatefulWidget with NavigationStates {
   final User user;
@@ -45,20 +46,32 @@ class _HomePageState extends State<HomePage>
     //TextEditingController _itemnamecontroller = TextEditingController();
 
     return Scaffold(
-        appBar: AppBar(
+        appBar: GradientAppBar(
           centerTitle: true,
           title: Text('Categories',
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
-          backgroundColor: Colors.teal[200],
+              gradient: LinearGradient(colors: [Colors.white,Colors.blueGrey]),
+
+          //backgroundColor: Colors.teal[200],
           bottom: TabBar(
-            unselectedLabelColor: Colors.black,
+            unselectedLabelColor: Colors.black38,
+            indicatorSize: TabBarIndicatorSize.tab,
             indicator: BoxDecoration(
-                color: Colors.blueGrey[100],
+              border: Border.all(color: Colors.teal),
+            
+                color: Colors.blueGrey[50],
                 
                 borderRadius: BorderRadius.circular(50)),
             controller: _tabController,
             tabs: <Widget>[
-              Tab(text: 'All'),
+              Tab(
+                child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  ),
+                child: Align(
+                  alignment: Alignment.center, 
+                  child: Text ('All'),),),),
               Tab(text: 'Paper'),
               Tab(text: 'Metal'),
               Tab(text: 'Plastic'),

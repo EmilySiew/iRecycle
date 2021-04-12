@@ -12,12 +12,12 @@ import 'package:http/http.dart' as http;
 
 class CollectItemPage extends StatefulWidget with NavigationStates {
   final User user;
-  
+
   const CollectItemPage({Key key, @required this.user}) : super(key: key);
 
   @override
   _CollectItemPageState createState() => _CollectItemPageState();
-} 
+}
 
 class _CollectItemPageState extends State<CollectItemPage> {
   GlobalKey<RefreshIndicatorState> refreshKey;
@@ -27,7 +27,7 @@ class _CollectItemPageState extends State<CollectItemPage> {
   String titlecenter = "Loading Collected Item...";
   bool visible = false;
 
-   @override
+  @override
   void initState() {
     super.initState();
     _loadCollectedItem();
@@ -37,14 +37,14 @@ class _CollectItemPageState extends State<CollectItemPage> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: Text('Collected Item',
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
-          backgroundColor: Colors.teal[200],
+          backgroundColor: Colors.blueGrey[200],
         ),
         body: Column(children: [
           itemlist == null
@@ -59,41 +59,40 @@ class _CollectItemPageState extends State<CollectItemPage> {
                       color: Colors.black),
                 ))))
               : Flexible(
-                child: RefreshIndicator(
-                  key: refreshKey,
-                  color: Colors.deepOrange,
-                  onRefresh: () async {
-                    _loadCollectedItem();
-                  },
-                
-                  child: GridView.count(
-                  crossAxisCount: 1,
-                  childAspectRatio: (screenWidth / screenHeight) / 0.2,
-                  children: List.generate(itemlist.length, (index) {
-                    return Padding(
-                        padding: EdgeInsets.all(1),
-                        child: Card(
-                          shape: Border(
-                          right: BorderSide(color: Colors.green[200], width:5),
-                          bottom: BorderSide(color: Colors.green[200], width: 1)
-                        ),
-                            color: Colors.grey[200],
-                            child: InkWell(
-                              onLongPress: () => _onCancelItem(
-                                itemlist[index]['itemid'].toString(),
-                                itemlist[index]['itemname'].toString()
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                              //child: SingleChildScrollView(
-                                child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  //children: [
-                                    //SizedBox(height: 3),
-                                    //Stack(
-                                      children: <Widget>[
-                                        Container(
-                                          /*height: 150,
+                  child: RefreshIndicator(
+                      key: refreshKey,
+                      color: Colors.deepOrange,
+                      onRefresh: () async {
+                        _loadCollectedItem();
+                      },
+                      child: GridView.count(
+                        crossAxisCount: 1,
+                        childAspectRatio: (screenWidth / screenHeight) / 0.2,
+                        children: List.generate(itemlist.length, (index) {
+                          return Padding(
+                              padding: EdgeInsets.all(1),
+                              child: Card(
+                                  shape: Border(
+                                      right: BorderSide(
+                                          color: Colors.green[200], width: 3),
+                                      bottom: BorderSide(
+                                          color: Colors.green[200], width: 1)),
+                                  color: Colors.grey[200],
+                                  child: InkWell(
+                                    onLongPress: () => _onCancelItem(
+                                        itemlist[index]['itemid'].toString(),
+                                        itemlist[index]['itemname'].toString()),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      //child: SingleChildScrollView(
+                                      child: Row(
+                                        //mainAxisAlignment: MainAxisAlignment.center,
+                                        //children: [
+                                        //SizedBox(height: 3),
+                                        //Stack(
+                                        children: <Widget>[
+                                          Container(
+                                              /*height: 150,
                                             width: 150,
                                             child: CachedNetworkImage(
                                               imageUrl:
@@ -108,61 +107,73 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                                 size: screenWidth / 2,
                                               ),
                                             )*/
-                                          height:150,
-                                          width:150,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.rectangle,
-                                            //border: Border.all(color: Colors.black,width: 1),
-                                            image: DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: NetworkImage(
-                                                "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
-                                              )
-                                            )
-                                            )
-                                          ),
+                                              height: 150,
+                                              width: 150,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  //border: Border.all(color: Colors.black,width: 1),
+                                                  image: DecorationImage(
+                                                      fit: BoxFit.fill,
+                                                      image: NetworkImage(
+                                                        "https://techvestigate.com/irecycle/images/${itemlist[index]['image']}.jpg",
+                                                      )))),
                                           Expanded(
-                                            child: SingleChildScrollView(
-                                            child: Container(
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                mainAxisSize:MainAxisSize.min,
-                                                children: <Widget>[
-                                                  
-                                                  Text(
-                                                    itemlist[index]['itemname'],
-                                                    style: TextStyle(
+                                              child: SingleChildScrollView(
+                                                  child: Container(
+                                                      child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: <Widget>[
+                                                            SizedBox(height: 15,),
+                                                Text(
+                                                  itemlist[index]['itemname'],
+                                                  style: TextStyle(
                                                       fontSize: 20,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black),
-                                                  ),
-                                                  Text(
+                                                ),
+                                                /*Text(
                                                     "Category : " +
                                                     itemlist[index]['category'],
                                                     style: TextStyle(
                                                       fontSize: 15,
                                                       color: Colors.black87),
-                                                  ),
-                                                  Text(
-                                                    "Weight : " +
-                                                        itemlist[index]['weight'] +
-                                                        "kg",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.black54),
-                                                  ),
-                                                  Text("Location : " + itemlist[index]['location']),
-                                                  Text("Owner : "+itemlist[index]['ownername'], 
-                                                  style: TextStyle(color: Colors.black45),),
-                                                  Text("Contact No : "+itemlist[index]['phone'], 
-                                                  style: TextStyle(color: Colors.black45),),
+                                                  ),*/
+                                                Text(
+                                                  "Weight : " +
+                                                      itemlist[index]
+                                                          ['weight'] +
+                                                      "kg",
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Colors.black87),
+                                                ),
+                                                Text(
+                                                  "Owner : " +
+                                                      itemlist[index]
+                                                          ['ownername'],
+                                                  style: TextStyle(
+                                                      color: Colors.black54),
+                                                ),
+                                                Text(
+                                                  "Contact No : " +
+                                                      itemlist[index]['phone'],
+                                                  style: TextStyle(
+                                                      color: Colors.black54),
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Text("----------------------------------------------------------"),
+                                                Text("Location : " +
+                                                    itemlist[index]
+                                                        ['location']),
+                                                        Text("----------------------------------------------------------"),
+                                              ])))),
 
-                                                ]
-                                              ))
-                                            )
-                                    ),
-                                    
-                                    /*Text(
+                                          /*Text(
                                       itemlist[index]['itemname'],
                                       style: TextStyle(
                                           fontSize: 25,
@@ -178,24 +189,24 @@ class _CollectItemPageState extends State<CollectItemPage> {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.indigo[800]),
                                     ),*/
-                                  ],
-                                ),
-                              ),
-                            )
-                            ));
-                  }),
-                )))
+                                        ],
+                                      ),
+                                    ),
+                                  )));
+                        }),
+                      )))
         ]),
       ),
     );
   }
+
   Future<void> _loadCollectedItem() async {
     //String urlLoadItem = "https://techvestigate.com/irecycle/php/loadAcceptItem.php";
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Loading Accepted Item...");
     await pr.show();
-    
+
     http.post("https://techvestigate.com/irecycle/php/loadAcceptItem.php",
         body: {
           "email": widget.user.email ?? "not available",
@@ -232,7 +243,8 @@ class _CollectItemPageState extends State<CollectItemPage> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Cancel " + itemname),
-          content: new Text("Are you sure you want to cancel selected accepted item?"),
+          content: new Text(
+              "Are you sure you want to cancel selected accepted item?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -254,8 +266,9 @@ class _CollectItemPageState extends State<CollectItemPage> {
     );
   }
 
-    Future<String> cancelItem(String itemid) async {
-    String urlLoadItems = "https://techvestigate.com/irecycle/php/cancelitem.php";
+  Future<String> cancelItem(String itemid) async {
+    String urlLoadItems =
+        "https://techvestigate.com/irecycle/php/cancelitem.php";
     ProgressDialog pr = new ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Canceling Item");
@@ -267,18 +280,14 @@ class _CollectItemPageState extends State<CollectItemPage> {
       if (res.body == "success") {
         Toast.show("Success", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-           
       } else {
         Toast.show("Failed", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        
       }
     }).catchError((err) {
       print(err);
-      
     });
     await pr.hide();
     return null;
   }
-
-  }
+}

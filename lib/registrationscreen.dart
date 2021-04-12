@@ -200,7 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _onLogin();
       } else {
         Toast.show(
-          "Registration failed",
+          "Failed. This email has been used.",
           context,
           duration: Toast.LENGTH_LONG,
           gravity: Toast.TOP,

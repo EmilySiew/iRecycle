@@ -43,7 +43,7 @@ class _RecycleItemState extends State<RecycleItemPage> {
         centerTitle: true,
         title: Text("Recycle Item",
         style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
-        backgroundColor: Colors.teal[200],
+        backgroundColor: Colors.blueGrey[200],
         actions: <Widget>[
             Flexible(
               child: IconButton(
@@ -83,7 +83,7 @@ class _RecycleItemState extends State<RecycleItemPage> {
                         child: Card(
                             shape: Border(
                                 right: BorderSide(
-                                    color: Colors.green[200], width: 5),
+                                    color: Colors.green[200], width: 3),
                                 bottom: BorderSide(
                                     color: Colors.green[200], width: 1)),
                             color: Colors.grey[200],

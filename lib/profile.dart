@@ -64,7 +64,7 @@ class _ProfileState extends State<ProfilePage> {
           'MY PROFILE',
           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
         ),
-        backgroundColor: Colors.teal[200],
+        backgroundColor: Colors.blueGrey[200],
       ),
       /*return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -340,6 +340,94 @@ class _ProfileState extends State<ProfilePage> {
     ));
   }
 
+  /*void _takePicture() async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            content: new Container(
+              height: screenHeight / 6,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Take picture from:",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      )),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Flexible(
+                          child: MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                        minWidth: 100,
+                        height: 50,
+                        child: Text('Camera',
+                            style: TextStyle(
+                              color: Colors.black,
+                            )),
+                        //color: Color.fromRGBO(101, 255, 218, 50),
+                        color: Colors.teal[200],
+                        textColor: Colors.black,
+                        elevation: 10,
+                        onPressed: () =>
+                            {Navigator.pop(context), _chooseCamera()},
+                      )),
+                      SizedBox(width: 10),
+                      Flexible(
+                          child: MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                        minWidth: 100,
+                        height: 50,
+                        child: Text('Gallery',
+                            style: TextStyle(
+                              color: Colors.black,
+                            )),
+                        //color: Color.fromRGBO(101, 255, 218, 50),
+                        color: Colors.teal[200],
+                        textColor: Colors.black,
+                        elevation: 10,
+                        onPressed: () => {
+                          Navigator.pop(context),
+                          _chooseGallery(),
+                        },
+                      )),
+                    ],
+                  ),
+                ],
+              ),
+            ));
+      },
+    );
+  }
+  
+  void _chooseCamera() async {
+    // ignore: deprecated_member_use
+    _image = await ImagePicker.pickImage(
+        source: ImageSource.camera, maxHeight: 800, maxWidth: 800);
+    //_cropImage();
+    setState(() {});
+  }
+
+  void _chooseGallery() async {
+    // ignore: deprecated_member_use
+    _image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, maxHeight: 400);
+    setState(() {});
+  }*/
+
   void _takePicture() async {
     showDialog(
       context: context,
@@ -576,7 +664,7 @@ class _ProfileState extends State<ProfilePage> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Change phone for " + widget.user.name),
+          title: new Text("Edit Phone Number"),
           content: new TextField(
               keyboardType: TextInputType.phone,
               controller: phoneController,
@@ -707,7 +795,7 @@ class _ProfileState extends State<ProfilePage> {
         // return object of type Dialog
         return AlertDialog(
           title:
-              new Text("Are you sure you want to log out? " + widget.user.name),
+              new Text("Are you sure you want to log out? "),
           //content: new Text("Are your sure?"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog

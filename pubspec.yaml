@@ -45,6 +45,7 @@ dependencies:
   flutter_slidable:
   dropdownfield:
   liquid_progress_indicator:
+  gradient_app_bar:
 
   
 

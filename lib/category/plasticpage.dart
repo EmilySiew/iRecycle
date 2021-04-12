@@ -74,7 +74,7 @@ class _PlasticPageState extends State<PlasticPage>{
                         padding: EdgeInsets.all(1),
                         child: Card(
                           shape: Border(
-                          right: BorderSide(color: Colors.green[200], width:5),
+                          right: BorderSide(color: Colors.green[200], width:3),
                           bottom: BorderSide(color: Colors.green[200], width: 1)
                         ),
                             color: Colors.grey[200],

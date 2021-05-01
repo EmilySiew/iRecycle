@@ -71,11 +71,35 @@ class _HomePageState extends State<HomePage>
                   ),
                 child: Align(
                   alignment: Alignment.center, 
-                  child: Text ('All'),),),),
-              Tab(text: 'Paper'),
-              Tab(text: 'Metal'),
-              Tab(text: 'Plastic'),
-              Tab(text: 'Glass'),
+                  child: Text ('All', style: TextStyle(fontWeight: FontWeight.bold),),),),),
+              Tab(child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  ),
+                child: Align(
+                  alignment: Alignment.center, 
+                  child: Text ('Paper', style: TextStyle(fontWeight: FontWeight.bold),),),),),
+              Tab(child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  ),
+                child: Align(
+                  alignment: Alignment.center, 
+                  child: Text ('Metal', style: TextStyle(fontWeight: FontWeight.bold),),),),),
+              Tab(child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  ),
+                child: Align(
+                  alignment: Alignment.center, 
+                  child: Text ('Plastic', style: TextStyle(fontWeight: FontWeight.bold),),),),),
+              Tab(child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  ),
+                child: Align(
+                  alignment: Alignment.center, 
+                  child: Text ('Glass', style: TextStyle(fontWeight: FontWeight.bold),),),),),
             ],
           ),
         ),

@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:recycle/loginpage.dart';
@@ -58,13 +59,14 @@ class _ProfileState extends State<ProfilePage> {
         SystemUiOverlayStyle(statusBarColor: Colors.black));
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
         centerTitle: true,
         title: Text(
           'MY PROFILE',
           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
         ),
-        backgroundColor: Colors.blueGrey[200],
+        gradient: LinearGradient(colors: [Colors.white,Colors.blueGrey]),
+        //backgroundColor: Colors.blueGrey[200],
       ),
       /*return MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -32,7 +32,7 @@ class _ItemScreenState extends State<ItemScreen> {
           appBar: AppBar(
             centerTitle: true,
             title: Text('ITEM DETAILS'),
-            backgroundColor: Colors.teal[100],
+            backgroundColor: Colors.blueGrey[100],
           ),
           //body: SingleChildScrollView(
           body: Container(

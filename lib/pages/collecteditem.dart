@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:toast/toast.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
@@ -40,12 +41,13 @@ class _CollectItemPageState extends State<CollectItemPage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: GradientAppBar(
           centerTitle: true,
           title: Text('Collected Item',
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
-          backgroundColor: Colors.blueGrey[200],
-        ),
+          //backgroundColor: Colors.blueGrey[200],
+          gradient: LinearGradient(colors: [Colors.white,Colors.blueGrey]
+        ),),
         body: Column(children: [
           itemlist == null
               ? Flexible(

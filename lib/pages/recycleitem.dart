@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:recycle/additem.dart';
 import 'package:recycle/item.dart';
@@ -39,11 +40,12 @@ class _RecycleItemState extends State<RecycleItemPage> {
     screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
         centerTitle: true,
         title: Text("Recycle Item",
         style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25)),
-        backgroundColor: Colors.blueGrey[200],
+        //backgroundColor: Colors.blueGrey[200],
+        gradient: LinearGradient(colors: [Colors.white,Colors.blueGrey]),
         actions: <Widget>[
             Flexible(
               child: IconButton(

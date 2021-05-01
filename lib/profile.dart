@@ -72,7 +72,8 @@ class _ProfileState extends State<ProfilePage> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           resizeToAvoidBottomPadding: false,*/
-      body: ListView.builder(
+      body:
+      ListView.builder(
           //Step 6: Count the data
           itemCount: 5,
           itemBuilder: (context, index) {
@@ -339,6 +340,7 @@ class _ProfileState extends State<ProfilePage> {
               );
             }
           }),
+      
     ));
   }
 
@@ -919,3 +921,4 @@ class _DropdownExampleState extends State<DropdownExample> {
     );
   }
 }
+

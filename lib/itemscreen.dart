@@ -191,8 +191,8 @@ class _DetailInterfaceState extends State<DetailInterface> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Accept " + widget.item.itemname),
-          content: new Text("Are your sure?"),
+          title: new Text("Collect " + widget.item.itemname),
+          content: new Text("2 credits are required for every item collected", style: TextStyle(color: Colors.red),),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -224,6 +224,7 @@ class _DetailInterfaceState extends State<DetailInterface> {
     http.post(urlLoadItems, body: {
       "itemid": widget.item.itemid,
       "email": widget.user.email,
+      "credit": widget.user.credit,
     }).then((res) {
       print(res.body);
       if (res.body == "success") {

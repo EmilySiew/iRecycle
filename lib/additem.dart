@@ -65,13 +65,13 @@ class _AddItemPageState extends State<AddItemPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text("** 5 Credits are required for each post **",
+                    Text("** 2 credits will be awarded for each post **",
                         style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.redAccent,
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 10),
-                    Container(
+                    /*Container(
                       child: Text(
                         '   Available Credit : ' + widget.user.credit + '   ',
                         style: TextStyle(
@@ -79,8 +79,8 @@ class _AddItemPageState extends State<AddItemPage> {
                             //fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
-                    ),
-                    SizedBox(height: 10),
+                    ),*/
+                    //SizedBox(height: 10),
                     GestureDetector(
                         onTap: () => {_onPictureSelection()},
                         child: Container(

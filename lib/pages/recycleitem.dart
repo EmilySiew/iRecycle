@@ -230,6 +230,8 @@ class _RecycleItemState extends State<RecycleItemPage> {
     await pr.show();
     http.post(urlLoadItems, body: {
       "itemid": itemid,
+      "email": widget.user.email,
+      "credit": widget.user.credit,
     }).then((res) {
       print(res.body);
       if (res.body == "success") {

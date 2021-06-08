@@ -66,12 +66,9 @@ class _ProfileState extends State<ProfilePage> {
           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
         ),
         gradient: LinearGradient(colors: [Colors.white,Colors.blueGrey]),
-        //backgroundColor: Colors.blueGrey[200],
+        
       ),
-      /*return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          resizeToAvoidBottomPadding: false,*/
+      
       body:
       ListView.builder(
           //Step 6: Count the data
@@ -103,7 +100,7 @@ class _ProfileState extends State<ProfilePage> {
                     SizedBox(height: 5),
                     Container(
                       child: Text(
-                        widget.user.name?.toUpperCase() ?? 'Not register',
+                        widget.user.name,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -344,94 +341,6 @@ class _ProfileState extends State<ProfilePage> {
     ));
   }
 
-  /*void _takePicture() async {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            content: new Container(
-              height: screenHeight / 6,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Take picture from:",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      )),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                          child: MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                        minWidth: 100,
-                        height: 50,
-                        child: Text('Camera',
-                            style: TextStyle(
-                              color: Colors.black,
-                            )),
-                        //color: Color.fromRGBO(101, 255, 218, 50),
-                        color: Colors.teal[200],
-                        textColor: Colors.black,
-                        elevation: 10,
-                        onPressed: () =>
-                            {Navigator.pop(context), _chooseCamera()},
-                      )),
-                      SizedBox(width: 10),
-                      Flexible(
-                          child: MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                        minWidth: 100,
-                        height: 50,
-                        child: Text('Gallery',
-                            style: TextStyle(
-                              color: Colors.black,
-                            )),
-                        //color: Color.fromRGBO(101, 255, 218, 50),
-                        color: Colors.teal[200],
-                        textColor: Colors.black,
-                        elevation: 10,
-                        onPressed: () => {
-                          Navigator.pop(context),
-                          _chooseGallery(),
-                        },
-                      )),
-                    ],
-                  ),
-                ],
-              ),
-            ));
-      },
-    );
-  }
-  
-  void _chooseCamera() async {
-    // ignore: deprecated_member_use
-    _image = await ImagePicker.pickImage(
-        source: ImageSource.camera, maxHeight: 800, maxWidth: 800);
-    //_cropImage();
-    setState(() {});
-  }
-
-  void _chooseGallery() async {
-    // ignore: deprecated_member_use
-    _image = await ImagePicker.pickImage(
-        source: ImageSource.gallery, maxHeight: 400);
-    setState(() {});
-  }*/
-
   void _takePicture() async {
     showDialog(
       context: context,
@@ -521,13 +430,6 @@ class _ProfileState extends State<ProfilePage> {
   void _changeName() {
     TextEditingController nameController = TextEditingController();
     // flutter defined function
-
-    if (widget.user.name == "not register") {
-      Toast.show("Not allowed", context,
-          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-      return;
-    }
-
     showDialog(
       context: context,
       builder: (BuildContext context) {

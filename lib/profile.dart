@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:recycle/loginpage.dart';
 import 'package:recycle/payment.dart';
 import 'package:recycle/registrationscreen.dart';
-import 'package:recycle/splashscreen.dart';
+import 'package:recycle/main.dart';
 import 'package:recycle/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -92,7 +92,7 @@ class _ProfileState extends State<ProfilePage> {
                                   Border.all(color: Colors.black, width: 2.0),
                               image: new DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: _image != null
+                                  image: _image == null
                                       ? AssetImage(pathAsset)
                                       : new NetworkImage(
                                           "https://techvestigate.com/irecycle/images/Profile/${widget.user.email}.jpg")))),
